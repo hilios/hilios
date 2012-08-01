@@ -1,0 +1,73 @@
+# Unicorn socket
+upstream hilios {
+  server unix:/var/ruby/hilios/shared/sockets/unicorn.sock fail_timeout=0;
+}
+# Main application
+server {
+  listen            80;
+  server_name       edson.hilios.com.br;
+
+  root              /var/rails/hilios/current/public;
+  keepalive_timeout 5;
+  
+  # Long expire date for the assets
+  location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|pdf|txt|tar|wav|bmp|rtf|js|flv|swf|html|htm)$ {
+    expires         30d;
+    access_log      off;
+  }
+
+  location / {
+    proxy_set_header            X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header            X-Real-IP         $remote_addr;
+    proxy_set_header            Host              $http_host;
+    
+    proxy_redirect              off;
+    proxy_connect_timeout       90;
+    proxy_send_timeout          90;
+    proxy_read_timeout          90;
+    proxy_buffer_size           4k;
+    proxy_buffers               4 32k;
+    proxy_busy_buffers_size     64k;
+    proxy_temp_file_write_size  64k;
+
+    client_max_body_size        10m;
+    client_body_buffer_size     128k;
+
+    # If you don't find the filename in the static files
+    # Then send the request for UNIX socket
+    if (!-f $request_filename) {
+      proxy_pass                http://hilios;
+      break;
+    }
+  }
+}
+# Content delivery network
+server {
+  listen            80;
+  server_name       cdn.hilios.com.br;
+
+  root              /var/ruby/hilios/current/public;
+  
+  expires           30d;
+  access_log        off;
+  keepalive_timeout 5;
+}
+# Used for static resources
+server {
+  listen            80;
+  server_name       examples.hilios.com.br;
+
+  root              /var/ruby/hilios/examples;
+  
+  expires           30d;
+  access_log        off;
+  keepalive_timeout 5;
+
+  index             index.htm index.html;
+}
+# Redirects from other domains
+server {
+  listen          80;
+  server_name     .hilios.com.br .edsonhilios.com.br;
+  rewrite ^ http://edson.hilios.com.br$1 redirect;
+}
