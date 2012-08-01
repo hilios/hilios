@@ -15,7 +15,7 @@ module Hilios
       set :root, File.dirname(__FILE__)
       # Views configuration
       set :views, 'app/views'
-      set :haml,  ugly: true,
+      set :haml,  ugly: production?,
                   format: :html5, 
                   layout: :'layouts/application'
       # Sessions
@@ -23,16 +23,16 @@ module Hilios
       set    :session_secret, '1Gikx4OTdoQp9OLjxfK76NBm065IzPkYTAirE8iUT5wgXAIW30dbjxOr5riSvRrKEQ7JxDsk7Kfz363Vif2erbgSZt3Xjh6hs8ZX8cO6X0ntzYYhgYzUmedQG8WielBh'
       # Assets pipeline
       register Sinatra::AssetPack
-      # assets do
-      #   serve '/assets', from: '/app/assets/javascripts'
-      #   serve '/assets', from: '/app/assets/stylesheets'
-      #   serve '/assets', from: '/app/assets/images'
+      assets do
+        serve '/javascripts', from: '/app/assets/javascripts'
+        serve '/stylesheets', from: '/app/assets/stylesheets'
+        serve '/images',      from: '/app/assets/images'
 
-      #   js  :application, '/assets/application.js',  ['/assets/**/*.js', '/assets/vendor/**/*.js']
-      #   css :application, '/assets/application.css', ['/assets/**/*.js', '/assets/vendor/**/*.css']
+        js  :application, ['/javascripts/frontend.js']
+        css :application, ['/stylesheets/frontend.css']
 
-      #   prebuild true
-      # end
+        prebuild true
+      end
       # Enable Sinatra contrib
       register Sinatra::Contrib
       # Helpers
