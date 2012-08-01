@@ -1,7 +1,6 @@
-class Index < Sinatra::Base
+class Index < Hilios::Frontend::Base
   get '/' do
-    # haml :index
-    "Edson Hilios"
+    haml :index
   end
 
   get '/blog' do
