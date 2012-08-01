@@ -1,25 +1,22 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
-
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
-
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+require "capistrano_colors"
+# App config
+set :application,         "hilios"
+set :deploy_to,           "/var/ruby/#{application}"
+# Custom recepies
+require "bundler/capistrano"  # Bundler 
+require "rvm/capistrano"      # RVM
+require "capistrano-unicorn"  # Unicorn
+# Server config
+set :user,                "ubuntu"
+set :use_sudo,            false
+role :web,                "hilios.com.br"
+role :app,                "hilios.com.br"
+role :db,                 "hilios.com.br", :primary => true
+# GIT config
+set :scm,                 :git
+set :repository,          "git@github.com:hilios/#{application}.git"
+set :branch,              "master"
+set :scm_verbose,         true
+# RVM config
+set :rvm_ruby_string, "1.9.3@#{application}"
+# set :rvm_type,        :system  # Copy the exact line. I really mean :system here
