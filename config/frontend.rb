@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
+
+Bundler.require
 # Webserver
 require 'sinatra/base'
 require 'sinatra/contrib/all'
@@ -12,7 +14,9 @@ module Hilios
     class Base < Sinatra::Base
       enable :logging, :dump_errors
       # Root
-      set :root, File.dirname(__FILE__)
+      set :root, File.expand_path('../', File.dirname(__FILE__))
+
+      # raise root
       # Views configuration
       set :views, 'app/views'
       set :haml,  ugly: production?,
@@ -21,20 +25,20 @@ module Hilios
       # Sessions
       enable :sessions
       set    :session_secret, '1Gikx4OTdoQp9OLjxfK76NBm065IzPkYTAirE8iUT5wgXAIW30dbjxOr5riSvRrKEQ7JxDsk7Kfz363Vif2erbgSZt3Xjh6hs8ZX8cO6X0ntzYYhgYzUmedQG8WielBh'
-      # Assets pipeline
+      # Extensions
+      register Sinatra::Contrib
       register Sinatra::AssetPack
+      # Configure assets pipeline
       assets do
-        serve '/javascripts', from: '/app/assets/javascripts'
-        serve '/stylesheets', from: '/app/assets/stylesheets'
-        serve '/images',      from: '/app/assets/images'
+        serve '/assets', from: 'app/assets/javascripts'
+        serve '/assets', from: 'app/assets/stylesheets'
+        serve '/assets', from: 'app/assets/images'
 
-        js  :application, ['/javascripts/frontend.js']
-        css :application, ['/stylesheets/frontend.css']
+        js  :app, '/assets/app.js',  ['/assets/frontend.js']
+        css :app, '/assets/app.css', ['/assets/frontend.css']
 
         prebuild true
       end
-      # Enable Sinatra contrib
-      register Sinatra::Contrib
       # Helpers
       helpers do
         include Rack::Utils
