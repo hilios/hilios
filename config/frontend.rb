@@ -31,8 +31,7 @@ module Hilios
         serve '/javascripts', from: 'app/assets/javascripts'
         serve '/stylesheets', from: 'app/assets/stylesheets'
         serve '/images',      from: 'app/assets/images'
-
-        serve '/vendor', from: 'vendor'
+        serve '/vendor',      from: 'vendor'
 
         js  :application, %w(
           /vendor/jquery-1.7.2.min.js
@@ -40,6 +39,8 @@ module Hilios
           /javascripts/*.js /javascripts/**/*.js
         )
         css :application, %w(/vendor/*.css /vendor/**/*.css /stylesheets/*.css)
+
+        precompile true
       end
       # Helpers
       helpers do
