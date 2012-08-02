@@ -6,14 +6,7 @@ require 'sinatra/contrib/all'
 require 'sinatra/assetpack'
 require 'active_support/inflector'
 
-module Sinatra::AssetPack
-  # Monkey patch that allows propagation of assets options through subclasses
-  def assets(&block)
-    @@options ||= Options.new(self, &block)
-    self.assets_initialize!  if block_given?
-    @@options
-  end
-end
+Dir["./config/initializers/**/*.rb"].each { |f| require f }
 
 module Hilios
   module Frontend
@@ -35,12 +28,18 @@ module Hilios
       register Sinatra::AssetPack
       # Configure assets pipeline
       assets do
-        serve '/assets', from: 'app/assets/javascripts'
-        serve '/assets', from: 'app/assets/stylesheets'
-        serve '/assets', from: 'app/assets/images'
+        serve '/javascripts', from: 'app/assets/javascripts'
+        serve '/stylesheets', from: 'app/assets/stylesheets'
+        serve '/images',      from: 'app/assets/images'
 
-        js  :application, ['/assets/*.js']
-        css :application, ['/assets/*.css']
+        serve '/vendor', from: 'vendor'
+
+        js  :application, %w(
+          /vendor/jquery-1.7.2.min.js
+          /vendor/*.js /vendor/**/*.js 
+          /javascripts/*.js /javascripts/**/*.js
+        )
+        css :application, %w(/vendor/*.css /vendor/**/*.css /stylesheets/*.css)
       end
       # Helpers
       helpers do
