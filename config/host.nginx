@@ -7,7 +7,7 @@ server {
   listen            80;
   server_name       edson.hilios.com.br;
 
-  root              /var/rails/hilios/current/public;
+  root              /var/ruby/hilios/current/public;
   keepalive_timeout 5;
   
   # Long expire date for the assets
