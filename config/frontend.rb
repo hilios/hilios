@@ -6,6 +6,7 @@ Bundler.require
 require 'sinatra/base'
 require 'sinatra/contrib/all'
 require 'sinatra/assetpack'
+require 'sinatra/assetpack/options'
 require 'active_support/inflector'
 
 module Hilios
@@ -15,8 +16,6 @@ module Hilios
       enable :logging, :dump_errors
       # Root
       set :root, File.expand_path('../', File.dirname(__FILE__))
-
-      # raise root
       # Views configuration
       set :views, 'app/views'
       set :haml,  ugly: production?,
@@ -28,24 +27,10 @@ module Hilios
       # Extensions
       register Sinatra::Contrib
       register Sinatra::AssetPack
-      # Configure assets pipeline
-      assets do
-        clear_ignores!
-        
-        serve '/assets', from: 'app/assets/javascripts'
-        serve '/assets', from: 'app/assets/stylesheets'
-        serve '/assets', from: 'app/assets/images'
-
-        js  :main, ['/assets/**/*.js']
-        css :main, ['/assets/frontend.css']
-
-        # prebuild true
-      end
       # Helpers
       helpers do
         include Rack::Utils
         alias_method :h, :escape_html
-
         alias_method :stylesheet, :css
         alias_method :javascript, :js
       end
@@ -62,6 +47,15 @@ module Hilios
         klass = File.basename(file_path, ".rb")
         klass = ActiveSupport::Inflector.camelize(klass)
         klass = ActiveSupport::Inflector.constantize(klass)
+        # Configure assets pipeline
+        klass.assets do
+          serve '/assets', from: 'app/assets/javascripts'
+          serve '/assets', from: 'app/assets/stylesheets'
+          serve '/assets', from: 'app/assets/images'
+
+          js  :application, ['/assets/*.js']
+          css :application, ['/assets/*.css']
+        end
         # Use as a middleware
         use klass
       end
