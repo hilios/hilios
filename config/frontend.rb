@@ -40,7 +40,7 @@ module Hilios
         )
         css :application, %w(/vendor/*.css /vendor/**/*.css /stylesheets/*.css)
 
-        precompile true
+        prebuild true
       end
       # Helpers
       helpers do
