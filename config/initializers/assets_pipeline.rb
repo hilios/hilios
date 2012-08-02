@@ -2,31 +2,27 @@
 # https://gist.github.com/3239413
 require 'sprockets'
 require 'sprockets-helpers'
+require 'active_support/core_ext'
 
 module Sinatra
   module AssetsPipeline
     # http://stackoverflow.com/a/10679994
     class Server
-      attr_reader :app, :root, :assets_prefix, :precompile, :sprockets
+
+      attr_reader :app, :assets_prefix, :engine
 
       def initialize(app, options = {})
-        @app = app
-        @root = options.delete(:root)
-        # @precompile = [*options.delete(:precompile)]
-        @assets_prefix = options.delete(:prefix) || %r{/assets}
-        @sprockets = if root
-          Sprockets::Environment.new(root)
-        else
-          Sprockets::Environment.new
-        end
-        yield sprockets if block_given?
+        app = app
+        assets_prefix = options.delete(:prefix) || %r{/assets}
+        engine = options.delete(:engine)
+        yield engine if block_given?
       end
 
       def call(env)
         path = env['PATH_INFO']
         if path =~ assets_prefix
           env["PATH_INFO"].sub!(assets_prefix, '')
-          sprockets.call(env)
+          engine.call(env)
         else
           app.call(env)
         end
@@ -52,11 +48,20 @@ module Sinatra
 
       app.helpers Helpers
 
-      app.use Server, :root => app.root do |sprockets|
-        app.assets_path.each do |path|
-          sprockets.append_path File.join(app.root, path)
-        end
+      app.set :sprockets, Sprockets::Environment.new(app.root)
+      # Load all assets path
+      app.assets_path.each do |path|
+        app.sprockets.append_path File.join(app.root, path)
       end
+      # Register asset pipeline middleware
+      app.use Server, :engine => app.sprockets
+
+      # Sprockets::Helpers.configure do |config|
+      #   config.environment = app.sprockets
+      #   config.manifest    = Sprockets::Manifest.new(app.sprockets, 'path/to/manifset.json')
+      #   # config.prefix      = assets_prefix
+      #   # config.public_path = public_folder
+      # end
     end
   end
 end
