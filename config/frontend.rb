@@ -28,17 +28,21 @@ module Hilios
       register Sinatra::AssetPack
       # Configure assets pipeline
       assets do
-        serve '/javascripts', from: 'app/assets/javascripts'
-        serve '/stylesheets', from: 'app/assets/stylesheets'
-        serve '/images',      from: 'app/assets/images'
-        serve '/vendor',      from: 'vendor'
+        serve '/assets/javascripts', from: 'app/assets/javascripts'
+        serve '/assets/stylesheets', from: 'app/assets/stylesheets'
+        serve '/assets/images',      from: 'app/assets/images'
+        serve '/assets/vendor',      from: 'vendor'
 
         js  :application, %w(
           /vendor/jquery-1.7.2.min.js
           /vendor/*.js /vendor/**/*.js 
           /javascripts/*.js /javascripts/**/*.js
         )
-        css :application, %w(/vendor/*.css /vendor/**/*.css /stylesheets/*.css)
+
+        css :application, %w(
+          /vendor/*.css /vendor/**/*.css 
+          /stylesheets/*.css /stylesheets/**/*.css
+        )
 
         prebuild true
       end

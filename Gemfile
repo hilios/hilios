@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'rake'
+
 gem 'sinatra'              # Webserver
 gem 'sinatra-contrib'      # Sinatra helpers
 gem 'sinatra-assetpack'    # Sinata assets pipeline
