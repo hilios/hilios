@@ -30,14 +30,16 @@ module Hilios
       register Sinatra::AssetPack
       # Configure assets pipeline
       assets do
+        clear_ignores!
+        
         serve '/assets', from: 'app/assets/javascripts'
         serve '/assets', from: 'app/assets/stylesheets'
         serve '/assets', from: 'app/assets/images'
 
-        js  :app, '/assets/app.js',  ['/assets/frontend.js']
-        css :app, '/assets/app.css', ['/assets/frontend.css']
+        js  :main, ['/assets/**/*.js']
+        css :main, ['/assets/frontend.css']
 
-        prebuild true
+        # prebuild true
       end
       # Helpers
       helpers do
