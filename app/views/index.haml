@@ -1,28 +1,32 @@
-#main
-  %header
+.row-fluid
+  %header.span12
     %h1
       Edson Hilios
-    %h2
+    %h3
       Open your mind, open your source
-  %article
+.row-fluid
+  %article.span6
     %p
       Hello, im a 26 years old software engineer specialized in web development with 10+ years of experience and innovation researcher from São Paulo, Brazil. Currently I am working @
       %a{:href => 'http://www.hotwords.com', :target => :blank} HOTWords
-  %nav
+.row-fluid
+  %nav.span12
     %ul
       %li
-        %a{:href => '/blog'}
+        %a.btn{:href => '/blog'}
           blog
       %li
-        %a{:href => '/linkedin'}
+        %a.btn{:href => '/linkedin'}
           linked in
       %li
-        %a{:href => '/github'}
+        %a.btn{:href => '/github'}
           github
       %li
-        %a{:href => '/twitter'}
+        %a.btn{:href => '/twitter'}
           twitter
-  / %footer
+%footer
+  :plain
+    <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">This website</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Edson Hilios</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
   /   %ul
   /     %li.right
   /       %a{:href => '#', :'data-help' => 0}
@@ -35,5 +39,3 @@
   /     %li To see in action call some friends
 %a.ribbon{:href => 'http://github.com/hilios'}
   %img{:src => 'https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png', :alt => 'Fork me on GitHub'}
-#container
-  %p Loading...

@@ -1,3 +1,44 @@
+@charset "UTF-8";
+
+@padding: 40px;
+
 body {
-  background-color: yellow;
+  background-color: #EDF3F3;
+  color: #121B21;
+  font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+  padding: @padding;
+}
+h1 {
+  color: #00AFC4;
+  font-size: 55px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+article {
+  margin: 20px 0;
+}
+nav ul { 
+  list-style: none;
+  margin: 0;
+  li {
+    float: left;
+    margin-right: 10px;
+  }
+}
+footer {
+  @color: #535B60;
+  bottom: 0;
+  color: @color;
+  left: @padding;
+  padding-bottom: @padding / 2;
+  position: absolute;
+  right: @padding;
+  a {
+    color: @color;
+  }
+}
+.ribbon {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
