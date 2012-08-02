@@ -45,6 +45,9 @@ module Hilios
         )
 
         prebuild true
+
+        js_compression :jsmin
+        css_compression :simple
       end
       # Helpers
       helpers do
