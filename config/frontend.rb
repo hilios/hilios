@@ -3,7 +3,6 @@ require 'bundler/setup'
 # Webserver
 require 'sinatra/base'
 require 'sinatra/contrib/all'
-require 'sinatra/assetpack'
 require 'active_support/inflector'
 
 Dir["./config/initializers/**/*.rb"].each { |f| require f }
@@ -23,38 +22,15 @@ module Hilios
       # Sessions
       enable :sessions
       set    :session_secret, '1Gikx4OTdoQp9OLjxfK76NBm065IzPkYTAirE8iUT5wgXAIW30dbjxOr5riSvRrKEQ7JxDsk7Kfz363Vif2erbgSZt3Xjh6hs8ZX8cO6X0ntzYYhgYzUmedQG8WielBh'
+      # Assets pipeline
+      set :assets_path, %w(app/assets/stylesheets app/assets/javascripts app/assets/images)
       # Extensions
       register Sinatra::Contrib
-      register Sinatra::AssetPack
-      # Configure assets pipeline
-      assets do
-        serve '/assets/javascripts', from: 'app/assets/javascripts'
-        serve '/assets/stylesheets', from: 'app/assets/stylesheets'
-        serve '/assets/images',      from: 'app/assets/images'
-        serve '/assets/vendor',      from: 'vendor'
-
-        js  :application, %w(
-          /vendor/jquery-1.7.2.min.js
-          /vendor/*.js /vendor/**/*.js 
-          /javascripts/*.js /javascripts/**/*.js
-        )
-
-        css :application, %w(
-          /vendor/*.css /vendor/**/*.css 
-          /stylesheets/*.css /stylesheets/**/*.css
-        )
-
-        prebuild true
-
-        js_compression :jsmin
-        css_compression :simple
-      end
+      register Sinatra::AssetsPipeline
       # Helpers
       helpers do
         include Rack::Utils
         alias_method :h, :escape_html
-        alias_method :stylesheet, :css
-        alias_method :javascript, :js
       end
     end
 

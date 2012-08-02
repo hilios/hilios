@@ -4,9 +4,11 @@ gem 'rake'
 
 gem 'sinatra'              # Webserver
 gem 'sinatra-contrib'      # Sinatra helpers
-gem 'sinatra-assetpack'    # Sinata assets pipeline
 gem 'activesupport'        # Dubious semantics and helper methods
 gem 'unicorn'              # Rack handler
+
+gem 'sprockets'            # Assets pipeline
+gem 'sprockets-helpers'    # Helpers for generating paths
 
 gem 'haml'                 # HTML templating language
 gem 'therubyracer'         # Javascript evaluator
