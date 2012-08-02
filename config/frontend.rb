@@ -1,13 +1,19 @@
 require 'rubygems'
 require 'bundler/setup'
-
-Bundler.require
 # Webserver
 require 'sinatra/base'
 require 'sinatra/contrib/all'
 require 'sinatra/assetpack'
-require 'sinatra/assetpack/options'
 require 'active_support/inflector'
+
+module Sinatra::AssetPack
+  # Monkey patch that allows propagation of assets options through subclasses
+  def assets(&block)
+    @@options ||= Options.new(self, &block)
+    self.assets_initialize!  if block_given?
+    @@options
+  end
+end
 
 module Hilios
   module Frontend
@@ -27,6 +33,15 @@ module Hilios
       # Extensions
       register Sinatra::Contrib
       register Sinatra::AssetPack
+      # Configure assets pipeline
+      assets do
+        serve '/assets', from: 'app/assets/javascripts'
+        serve '/assets', from: 'app/assets/stylesheets'
+        serve '/assets', from: 'app/assets/images'
+
+        js  :application, ['/assets/*.js']
+        css :application, ['/assets/*.css']
+      end
       # Helpers
       helpers do
         include Rack::Utils
@@ -47,15 +62,6 @@ module Hilios
         klass = File.basename(file_path, ".rb")
         klass = ActiveSupport::Inflector.camelize(klass)
         klass = ActiveSupport::Inflector.constantize(klass)
-        # Configure assets pipeline
-        klass.assets do
-          serve '/assets', from: 'app/assets/javascripts'
-          serve '/assets', from: 'app/assets/stylesheets'
-          serve '/assets', from: 'app/assets/images'
-
-          js  :application, ['/assets/*.js']
-          css :application, ['/assets/*.css']
-        end
         # Use as a middleware
         use klass
       end
