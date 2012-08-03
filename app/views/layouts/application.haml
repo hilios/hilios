@@ -6,7 +6,7 @@
     - title = '%s' if title.empty?
     %title= title % 'Edson Hilios'
     %link{href: 'http://fonts.googleapis.com/css?family=Droid+Sans:400,700', rel: 'stylesheet', type: 'text/css'}
-    = stylesheet :application, media: 'screen'
+    = stylesheet :application
     = yield_content(:stylesheets)
   %body
     = yield
