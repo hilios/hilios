@@ -5,11 +5,29 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-namespace :assets do
-  task :precompile do
-    # TODO: https://gist.github.com/3239413
-  end
+def app
+  require ::File.expand_path('../config/frontend',  __FILE__)
+  Hilios::Frontend::Application
 end
+
+# task :default => :test
+
+require 'rake/sprocketstask'
+Rake::SprocketsTask.new do |t|
+  t.environment = app.sprockets
+  t.output      = File.join(app.public_folder, app.assets_prefix)
+  t.assets      = app.assets_precompile
+end
+
+namespace :assets do
+  task :precompile => :assets
+end
+
+# require "rspec/core/rake_task"
+# RSpec::Core::RakeTask.new(:spec) do |task|
+#   task.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
+#   task.pattern    = 'spec/**/*_spec.rb'
+# end
 
 # begin
 #   require 'rdoc/task'

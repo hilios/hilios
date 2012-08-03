@@ -24,6 +24,7 @@ module Hilios
       set    :session_secret, '1Gikx4OTdoQp9OLjxfK76NBm065IzPkYTAirE8iUT5wgXAIW30dbjxOr5riSvRrKEQ7JxDsk7Kfz363Vif2erbgSZt3Xjh6hs8ZX8cO6X0ntzYYhgYzUmedQG8WielBh'
       # Assets pipeline
       set :assets_path, %w(vendor app/assets/stylesheets app/assets/javascripts app/assets/images)
+      set :assets_precompile, %w(application.js application.css)
       # Extensions
       register Sinatra::Contrib
       register Sinatra::AssetsPipeline

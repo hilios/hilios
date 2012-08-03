@@ -57,9 +57,10 @@ module Sinatra
       def registered(app)
         sprockets ||= Sprockets::Environment.new(app.root)
         app.set :sprockets, sprockets
-        assets_prefix = get_setting app, :assets_prefix, default: '/assets'
-        assets_path   = get_setting app, :assets_path
-        assets_host   = get_setting app, :assets_host,   default: ''
+        assets_prefix     = get_setting app, :assets_prefix, default: '/assets'
+        assets_path       = get_setting app, :assets_path
+        assets_host       = get_setting app, :assets_host,   default: ''
+        assets_precompile = get_setting app, :assets_precompile
         # Set the manifest file path
         app.set :assets_manifest_file, File.join(app.public_folder, assets_prefix, "manifset.json")
         # Load all assets path
