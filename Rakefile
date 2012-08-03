@@ -17,7 +17,7 @@ require 'sinatra/assetpack/rake'
 
 namespace :assets do
   task :precompile do
-    Rake::Task['assetpack:build'].invoke
+    # TODO: https://gist.github.com/3239413
   end
 end
 
