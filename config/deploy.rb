@@ -18,5 +18,5 @@ set :repository,          "git@github.com:hilios/#{application}.git"
 set :branch,              "sprockets"
 set :scm_verbose,         true
 # RVM config
-set :rvm_ruby_string, "1.9.3@#{application}"
-# set :rvm_type,        :system  # Copy the exact line. I really mean :system here
+set :rvm_ruby_string,     "1.9.3@#{application}"
+# set :rvm_type,            :system  # Copy the exact line. I really mean :system here
