@@ -19,6 +19,7 @@ Rake::SprocketsTask.new do |t|
   t.assets      = app.assets_precompile
 end
 
+desc "Precompile assets"
 namespace :assets do
   task :precompile => :assets
 end
