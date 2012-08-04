@@ -15,7 +15,7 @@ role :db,                 "hilios.com.br", :primary => true
 # GIT config
 set :scm,                 :git
 set :repository,          "git@github.com:hilios/#{application}.git"
-set :branch,              "sprockets"
+set :branch,              "master"
 set :scm_verbose,         true
 # RVM config
 set :rvm_ruby_string,     "1.9.3@#{application}"
