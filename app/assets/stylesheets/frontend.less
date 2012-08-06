@@ -6,6 +6,7 @@ body {
   background-color: #EDF3F3;
   color: #121B21;
   font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+  font-size: 14px;
   padding: @padding;
 }
 h1 {
@@ -29,6 +30,7 @@ footer {
   @color: #535B60;
   bottom: 0;
   color: @color;
+  font-size: 12px;
   left: @padding;
   padding-bottom: @padding / 2;
   position: absolute;
@@ -36,9 +38,20 @@ footer {
   a {
     color: @color;
   }
+  img {
+    height: 15px;
+  }
 }
 .ribbon {
   position: absolute;
   right: 0;
   top: 0;
+}
+#canvas {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -999;
 }

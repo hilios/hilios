@@ -1,1 +1,2 @@
-console.log "Hello console guy!"
+window.Frontend = Ember.Application.create rootElement: '#canvas'
+

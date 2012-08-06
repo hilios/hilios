@@ -15,6 +15,10 @@ gem 'therubyracer'         # Javascript evaluator
 gem 'coffee-script'        # Javascript compiler
 gem 'less'                 # Stylesheet compiler
 
+gem 'eventmachine'         # Non-blocking webserver
+gem 'em-websocket'         # Websocket
+
+
 group :development do
   gem 'shotgun'             # Auto reload Rack environment
   # Deploy with Capistrano
