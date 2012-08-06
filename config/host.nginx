@@ -55,9 +55,9 @@ server {
 # Used for static resources
 server {
   listen            80;
-  server_name       examples.hilios.com.br;
+  server_name       static.hilios.com.br;
 
-  root              /var/ruby/hilios/examples;
+  root              /var/ruby/hilios/static;
   
   expires           30d;
   access_log        off;
