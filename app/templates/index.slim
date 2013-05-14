@@ -15,8 +15,8 @@ article
     - for post in @posts
       li
         img.type(src=image_path("#{post['type']}.svg"))
-        a(href="/blog/#{post['id']}/# post['slug']}")
-          strong= post['title']
+        a(href="/blog/#{post['id']}/#{post['slug']}")
+          strong = post['title']
         br
         small
           = Time.parse(post['date']).strftime('%b %d, %Y')

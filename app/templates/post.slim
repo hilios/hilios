@@ -1,4 +1,4 @@
-- content_for(:title) { "#{@post['title']} - %s" }
+- content_for(:title ) { "#{@post['title']} - %s" }
 
 article
   nav
@@ -20,7 +20,7 @@ article
   - when :link
     == @post['description']
     p
-      a href: @post['url']
+      a href=@post['url']
   - when :answer
     | Q/A
   - when :quote

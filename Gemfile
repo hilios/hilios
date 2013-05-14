@@ -17,8 +17,8 @@ gem 'sprockets'            # Assets pipeline
 gem 'sprockets-sass'       # Integrate 
 gem 'sprockets-helpers'    # Helpers for generating paths
 
-gem 'slim'                 # HTML templating language
-gem 'redcarpet'            # Parse markdown
+gem 'slim'                 # HTML parser
+gem 'redcarpet'            # Markdown parser
 
 # gem 'eventmachine'         # Non-blocking webserver
 # gem 'em-websocket'         # Websocket

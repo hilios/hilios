@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 # Webserver
 require 'slim'
+require 'redcarpet'
 require 'sinatra/base'
 require 'sinatra/contrib/all'
 require 'active_support/inflector'
