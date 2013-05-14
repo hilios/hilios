@@ -13,9 +13,9 @@ module Hilios
     class Base < Sinatra::Base
       enable :logging, :dump_errors
       # Root
-      set :root, File.expand_path('../', File.dirname(__FILE__))
+      set :root,  File.expand_path('../', File.dirname(__FILE__))
       # Views configuration
-      set :views, 'app/views'
+      set :views, 'app/templates'
       set :haml,  ugly: production?,
                   format: :html5, 
                   layout: :'layouts/application'
@@ -23,7 +23,7 @@ module Hilios
       enable :sessions
       set    :session_secret, '1Gikx4OTdoQp9OLjxfK76NBm065IzPkYTAirE8iUT5wgXAIW30dbjxOr5riSvRrKEQ7JxDsk7Kfz363Vif2erbgSZt3Xjh6hs8ZX8cO6X0ntzYYhgYzUmedQG8WielBh'
       # Assets pipeline
-      set :assets_path, %w(vendor app/assets/stylesheets app/assets/javascripts app/assets/images)
+      set :assets_path, %w(app/assets/vendor app/assets/stylesheets app/assets/javascripts app/assets/images)
       set :assets_precompile, %w(application.js application.css)
       # Extensions
       register Sinatra::Contrib
@@ -40,7 +40,7 @@ module Hilios
       use Rack::Session::Pool, :expire_after => 2592000
       use Rack::ShowExceptions
       # Require all controller as middlewares
-      Dir["./app/controllers/**/*.rb"].each do |file_path|
+      Dir["./app/**/*.rb"].each do |file_path|
         require file_path
         # Predicts class name from file name, just like rails
         klass = File.basename(file_path, ".rb")

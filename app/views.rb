@@ -1,5 +1,8 @@
 class Index < Hilios::Frontend::Base
+  tumblr = Tumblr::Client.new
+
   get '/' do
+    @hilios = tumblr.info
     haml :index
   end
 

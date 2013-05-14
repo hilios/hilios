@@ -1,0 +1,13 @@
+!!! 5
+%html{lang: 'pt'}
+  %head
+    %meta{charset: 'utf-8'}
+    - title = yield_content(:title)
+    - title = '%s' if title.empty?
+    %title= title % 'Edson Hilios'
+    = stylesheet(:application)
+    = yield_content(:stylesheets)
+  %body
+    = yield
+    = javascript(:application)
+    = yield_content(:javascripts)

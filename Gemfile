@@ -7,6 +7,8 @@ gem 'sinatra-contrib'      # Sinatra helpers
 gem 'activesupport'        # Dubious semantics and helper methods
 gem 'unicorn'              # Rack handler
 
+gem 'tumblr_client'        # Tumblr API Client
+
 gem 'sprockets'            # Assets pipeline
 gem 'sprockets-helpers'    # Helpers for generating paths
 
@@ -15,8 +17,8 @@ gem 'therubyracer'         # Javascript evaluator
 gem 'coffee-script'        # Javascript compiler
 gem 'less'                 # Stylesheet compiler
 
-gem 'eventmachine'         # Non-blocking webserver
-gem 'em-websocket'         # Websocket
+# gem 'eventmachine'         # Non-blocking webserver
+# gem 'em-websocket'         # Websocket
 
 
 group :development do
