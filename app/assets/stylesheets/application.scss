@@ -1,0 +1,118 @@
+/*
+ *= require normalize
+ *= require opensans
+ *= require_self
+ *= require_tree .
+ */
+
+@import 'compass/css3';
+
+$padding:   25px;
+$fontColor: #434343;
+
+body{
+  background-color: #ecf0f1;
+  color: $fontColor;
+  font-family: 'Open Sans', Helvetica, Arial, Verdana, sans-serif;
+  font-size: 19px;
+  line-height: 34px;
+}
+img{
+  vertical-align: middle;
+}
+header{
+  @include transition(all .25s linear);
+
+  background: #3498db;
+  color: #ffffff;
+  padding: $padding;
+
+  &:hover{
+    padding-top: $padding + 10px;
+    padding-bottom: $padding + 10px;
+
+    .avatar{
+      @include transition(all .25s linear);
+      @include rotate(360);
+    }
+  }
+
+  .avatar{
+    @include transition(all .25s linear);
+    @include border-radius(130px);
+    @include single-box-shadow(rgba(0,0,0,0.2), 2px, 2px, 2px, 0);
+    border: 3px solid #ffffff;
+    display: block;
+    margin: 0 auto;
+  }
+  .title{
+    font-size: 35px;
+  }
+}
+nav{
+  text-align: center;
+
+  a{
+    display: inline-block;
+    margin: 0 12.5px;
+    height: 50px;
+    width: 50px;
+
+    img{
+      height: 50px;
+    }
+  }
+}
+article{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: $padding;
+
+  .type{
+    height: 30px;
+  }
+  .tag{
+    // @include opacity(0.5);
+    height: 15px;
+    width: 15px;
+  }
+  .posts{
+    list-style: none;
+
+    li{
+      line-height: 30px;
+      margin-bottom: 20px;
+    }
+  }
+  small{
+    color: #999999;
+    line-height: 16px;
+  }
+}
+a{
+  @include transition(color .25s linear);
+  color: #3498db;
+
+  &:hover, &:active{
+    color: #2980b9;
+  }
+}
+footer{
+  @extend article;
+  font-size: 12px;
+  list-style: 15px;
+  padding: $padding;
+
+  a{
+    color: $fontColor;
+    text-decoration: none;
+  }
+  img{
+    height: 15px;
+  }
+}
+.ribbon {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

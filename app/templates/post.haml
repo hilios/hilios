@@ -1,0 +1,17 @@
+- post = post(@id)
+- content_for(:title) { "#{post['title']} - %s" }
+
+%article
+  %h1
+    %img.type{src: image_path("#{post['type']}.svg")}
+    = post['title']
+  %small
+    = Time.parse(post['date']).strftime('%b %d, %Y')
+    %img.tag{src: image_path('tag.svg')}
+    = post['tags'].map { |tag| "##{tag}" }.join(', ')
+  - case post['type'].to_sym
+  - when :text
+    = post['body']
+  - when :link
+    = post['description']
+    %a{href: post['url']}= post['url']

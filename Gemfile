@@ -9,13 +9,16 @@ gem 'unicorn'              # Rack handler
 
 gem 'tumblr_client'        # Tumblr API Client
 
+gem 'therubyracer'         # Javascript evaluator
+gem 'coffee-script'        # Javascript compiler
+gem 'compass'              # Stylesheet framework
+
 gem 'sprockets'            # Assets pipeline
+gem 'sprockets-sass'       # Integrate 
 gem 'sprockets-helpers'    # Helpers for generating paths
 
 gem 'haml'                 # HTML templating language
-gem 'therubyracer'         # Javascript evaluator
-gem 'coffee-script'        # Javascript compiler
-gem 'less'                 # Stylesheet compiler
+gem 'bluecloth'            # Parse markdown
 
 # gem 'eventmachine'         # Non-blocking webserver
 # gem 'em-websocket'         # Websocket
