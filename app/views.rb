@@ -1,38 +1,36 @@
+# encoding: UTF-8
 class Views < Hilios::Frontend::Base
 
-  helpers do
-    def tumblr
-      @tumblr ||= Tumblr::Client.new
-    end
+  before do
+    @blog = tumblr.blog_info(blog_name)['blog']
+  end
 
+  helpers do
     def blog_name
       "hilios".freeze
     end
 
+    def tumblr
+      @tumblr ||= Tumblr::Client.new
+    end
+
     def avatar(size=nil)
-      @avatar ||= tumblr.avatar(blog_name, size)
-    end
-
-    def blog
-      @blog ||= tumblr.blog_info(blog_name)['blog']
-    end
-
-    def posts
-      @posts ||= tumblr.posts(blog_name)['posts']
-    end
-
-    def post(id)
-      @post ||= tumblr.posts(blog_name, {id: id})['posts'].first
+      tumblr.avatar(blog_name, size)
     end
   end
 
   get '/' do
-    haml :index
+    @posts = tumblr.posts(blog_name)['posts']
+    slim :index
   end
 
   get '/blog/:id/:slug' do |id, slug|
-    @id = id
-    haml :post
+    @post = tumblr.posts(blog_name, {id: id})['posts'].first
+    slim :post
+  end
+
+  not_found do
+    slim :not_found
   end
 
   get '/linkedin' do

@@ -1,0 +1,27 @@
+- content_for(:title) { "#{@post['title']} - %s" }
+
+article
+  nav
+    a.back(href='/')
+      img(src=image_path('back.svg') alt='Back')
+
+  h1
+    img.type(src=image_path("#{@post['type']}.svg"))
+    = @post['title']
+
+  small
+    = Time.parse(@post['date']).strftime('%b %d, %Y')
+    img.tag(src=image_path('tag.svg'))
+    = @post['tags'].map { |tag| "##{tag}" }.join(', ')
+  
+  - case @post['type'].to_sym
+  - when :text
+    == @post['body']
+  - when :link
+    == @post['description']
+    p
+      a href: @post['url']
+  - when :answer
+    | Q/A
+  - when :quote
+    | Quote

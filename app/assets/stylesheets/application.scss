@@ -22,44 +22,38 @@ img{
 }
 header{
   @include transition(all .25s linear);
-
   background: #3498db;
   color: #ffffff;
+  height: 70px;
   padding: $padding;
-
-  &:hover{
-    padding-top: $padding + 10px;
-    padding-bottom: $padding + 10px;
-
-    .avatar{
-      @include transition(all .25s linear);
-      @include rotate(360);
-    }
-  }
+  text-align: center;
 
   .avatar{
     @include transition(all .25s linear);
     @include border-radius(130px);
     @include single-box-shadow(rgba(0,0,0,0.2), 2px, 2px, 2px, 0);
     border: 3px solid #ffffff;
-    display: block;
-    margin: 0 auto;
-  }
-  .title{
-    font-size: 35px;
-  }
-}
-nav{
-  text-align: center;
-
-  a{
     display: inline-block;
-    margin: 0 12.5px;
-    height: 50px;
-    width: 50px;
+  }
+  a{
+    display: block;
+  }
+  strong{
+    @include opacity(0);
+    font-weight: normal;
+    margin-top: 10px;
+  }
+  // On hover effects
+  &:hover{
+    height: 100px;
 
-    img{
-      height: 50px;
+    .avatar{
+      @include transition(all .25s linear);
+      @include rotate(180deg);
+    }
+    strong{
+      @include transition(all .25s linear);
+      @include opacity(1);
     }
   }
 }
@@ -68,11 +62,13 @@ article{
   margin: 0 auto;
   padding: $padding;
 
+  h1{
+    line-height: 45px;
+  }
   .type{
     height: 30px;
   }
   .tag{
-    // @include opacity(0.5);
     height: 15px;
     width: 15px;
   }
@@ -88,13 +84,44 @@ article{
     color: #999999;
     line-height: 16px;
   }
+  a{
+    border-bottom: 2px solid #3498db;
+    color: #3498db;
+    text-decoration: none;
+
+    &:hover, &:active{
+      color: #2980b9;
+      border-bottom-color: #2980b9;
+    }
+  }
 }
 a{
-  @include transition(color .25s linear);
+  @include transition(all .25s linear);
   color: #3498db;
 
   &:hover, &:active{
     color: #2980b9;
+  }
+}
+nav{
+  text-align: center;
+
+  a{
+    @include transition(all .5s);
+    border-bottom-style: none !important;
+    display: inline-block;
+    margin: 0 12.5px;
+    height: 50px;
+    width: 50px;
+
+    &:hover{
+      @include transition(all .5s);
+      @include opacity(0.8);
+    }
+
+    img{
+      height: 50px;
+    }
   }
 }
 footer{
@@ -104,8 +131,13 @@ footer{
   padding: $padding;
 
   a{
+    border-style: none;
     color: $fontColor;
     text-decoration: none;
+
+    &:hover{
+      text-decoration: underline;
+    }
   }
   img{
     height: 15px;

@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 # Webserver
+require 'slim'
 require 'sinatra/base'
 require 'sinatra/contrib/all'
 require 'active_support/inflector'
@@ -16,9 +17,7 @@ module Hilios
       set :root,  File.expand_path('../', File.dirname(__FILE__))
       # Views configuration
       set :views, 'app/templates'
-      set :haml,  ugly: production?,
-                  format: :html5, 
-                  layout: :'layouts/application'
+      set :slim,  layout: :'layouts/application'
       # Sessions
       enable :sessions
       set    :session_secret, '1Gikx4OTdoQp9OLjxfK76NBm065IzPkYTAirE8iUT5wgXAIW30dbjxOr5riSvRrKEQ7JxDsk7Kfz363Vif2erbgSZt3Xjh6hs8ZX8cO6X0ntzYYhgYzUmedQG8WielBh'
