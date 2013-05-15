@@ -2,7 +2,7 @@
 
 article
   nav
-    a.back(href='/')
+    a.back(href='/' target='_self')
       img(src=image_path('back.svg') alt='Back')
 
   h1
@@ -20,7 +20,7 @@ article
   - when :link
     == @post['description']
     p
-      a href=@post['url']
+      a(href=@post['url']) = @post['url']
   - when :answer
     | Q/A
   - when :quote

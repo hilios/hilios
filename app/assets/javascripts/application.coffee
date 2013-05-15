@@ -7,13 +7,13 @@
 #= require_self
 #= require_tree .
 
-app = 
+window.app = 
   views: {}
 
   start: ->
-    $('data-view').each ->
-      viewName = @.data('view')
-      view = app.views[viewName](el: this)
+    $('[data-view]').each ->
+      viewName = $(@).data('view')
+      view = new app.views[viewName](el: this)
 
 $ ->
   app.start()

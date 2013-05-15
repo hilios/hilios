@@ -6,7 +6,7 @@ app.views.posts = Backbone.View.extend
 
   paginate: (event, isInView, visiblePartX, visiblePartY)->
     if visiblePartY is 'bottom' and not @hasSpin()
-      $spin = $('<div class="spin"></div>')
+      $spin = $('<li class="spin" />')
       $spin.appendTo(event.target)
       $spin.spin('large')
 

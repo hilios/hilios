@@ -10,5 +10,5 @@ article
     a(href='/twitter')
       img(src=image_path('twitter.svg') alt='Twitter')
 
-  ul.posts
+  ul.posts(data-view='posts')
     == partial :post, collection: @posts
