@@ -6,3 +6,4 @@ log/*.log
 pids/
 tmp/
 nohup.out
+public/system
