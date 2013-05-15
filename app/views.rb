@@ -40,7 +40,7 @@ class Views < Hilios::Application::Base
   get '/' do
     @page = request.params.delete('page').to_i || 0
     @posts = tumblr.posts(blog_name, {
-      offset: @page * post_per_page
+      limit: post_per_page, offset: @page * post_per_page
     })['posts']
 
     if request.xhr?
