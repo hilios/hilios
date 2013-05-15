@@ -1,7 +1,6 @@
 article
   .description
-    markdown:
-      #{@blog['description']}
+    == markdown @blog['description']
 
   nav
     a(href='/github')
