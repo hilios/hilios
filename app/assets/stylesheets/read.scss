@@ -3,7 +3,7 @@
 .screenshot{
   @include border-radius(5px);
   background-color: #e5e5e5;
-  margin-bottom: 20px;
+  margin: 20px auto;
   padding: 5px;
   width: 640px;
 
@@ -25,5 +25,12 @@
   img{
     height: 480px;
     width: 640px;
+  }
+
+  .frame{
+    background-color: #ffffff;
+    height: 440px;
+    padding: 20px;
+    width: 600px; 
   }
 }

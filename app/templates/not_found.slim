@@ -1,2 +1,15 @@
+- content_for(:title ) { "Page not found - %s" }
+
 article
-  h1 Page not found
+  h1 Oops! This page does not exists!
+  
+  .screenshot
+    span.button
+    span.button
+    span.button
+    code.frame
+      | 404 - Page not found
+
+  nav
+    a.back(href='/' target='_self')
+      img(src=image_path('back.svg') alt='Back')
