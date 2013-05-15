@@ -24,6 +24,25 @@ namespace :assets do
   task :precompile => :assets
 end
 
+desc "Generates a screenshot from an URL with 640x480 px"
+task :screenshot, :url, :path do |task, arguments|
+    require 'phantomjs'
+    require 'mini_magick'
+    # Set the variables
+    url = arguments[:url]
+    path = arguments[:path]
+    # Ensure path exists
+    path_folder = File.expand_path(File.dirname(path))
+    FileUtils.mkdir_p(path_folder) if not File.exists?(path_folder)
+    # Generate the screenshot
+    rasterize_path = File.expand_path('app/rasterize.js', File.dirname(__FILE__))
+    Phantomjs.run(rasterize_path, url, path)
+    # Resize image
+    image = MiniMagick::Image.new(path)
+    image.resize('640x')
+    image.crop('x480!+0+0')
+  end
+
 # require "rspec/core/rake_task"
 # RSpec::Core::RakeTask.new(:spec) do |task|
 #   task.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
