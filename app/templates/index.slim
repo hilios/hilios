@@ -12,13 +12,4 @@ article
       img(src=image_path('twitter.svg') alt='Twitter')
 
   ul.posts
-    - for post in @posts
-      li
-        img.type(src=image_path("#{post['type']}.svg"))
-        a(href="/blog/#{post['id']}/#{post['slug']}")
-          strong = post['title']
-        br
-        small
-          = Time.parse(post['date']).strftime('%b %d, %Y')
-          img.tag(src=image_path('tag.svg'))
-          = post['tags'].map { |tag| "##{tag}" }.join(', ')
+    == partial :post, collection: @posts

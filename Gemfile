@@ -4,6 +4,7 @@ gem 'rake'
 
 gem 'sinatra'              # Webserver
 gem 'sinatra-contrib'      # Sinatra helpers
+gem 'sinatra-partial'      # Partial helper
 gem 'activesupport'        # Dubious semantics and helper methods
 gem 'unicorn'              # Rack handler
 

@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'slim'
 require 'redcarpet'
 require 'sinatra/base'
+require 'sinatra/partial'
 require 'sinatra/contrib/all'
 require 'active_support/inflector'
 
@@ -27,11 +28,18 @@ module Hilios
       set :assets_precompile, %w(application.js application.css)
       # Extensions
       register Sinatra::Contrib
+      register Sinatra::Partial
       register Sinatra::AssetsPipeline
       # Helpers
       helpers do
         include Rack::Utils
         alias_method :h, :escape_html
+      end
+
+      configure do
+        # Partial helper
+        set :partial_template_engine, :slim
+        enable :partial_underscores
       end
     end
 

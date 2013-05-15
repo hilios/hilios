@@ -2,9 +2,11 @@ doctype 5
 html(lang='pt')
   head
     meta(charset='utf-8')
+    base(target='_blank')
     - title = yield_content :title
     - title = '%s' if title.empty?
     title = title % 'Edson Hilios'
+    == yield_content :head
     == stylesheet :application
   body
     header

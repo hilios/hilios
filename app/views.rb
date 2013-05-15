@@ -24,9 +24,14 @@ class Views < Hilios::Frontend::Base
     slim :index
   end
 
+  get '/search' do
+    # @posts = tumblr.posts(blog_name)['posts']
+    slim :posts
+  end
+
   get '/blog/:id/:slug' do |id, slug|
     @post = tumblr.posts(blog_name, {id: id})['posts'].first
-    slim :post
+    slim :read
   end
 
   not_found do
@@ -42,7 +47,6 @@ class Views < Hilios::Frontend::Base
   end
 
   get '/twitter' do
-    @post = {}
     redirect 'http://twitter.com/hilios'
   end
 end
