@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class Views < Hilios::Frontend::Base
+class Views < Hilios::Application::Base
 
   before do
     @blog = tumblr.blog_info(blog_name)['blog']

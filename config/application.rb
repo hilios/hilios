@@ -11,7 +11,7 @@ require 'active_support/inflector'
 Dir["./config/initializers/**/*.rb"].each { |f| require f }
 
 module Hilios
-  module Frontend
+  module Application
     # == Default configuration for the middlewares
     class Base < Sinatra::Base
       enable :logging, :dump_errors
@@ -32,7 +32,7 @@ module Hilios
       register Sinatra::AssetsPipeline
       # Helpers
       helpers do
-        include Rack::Utils
+        include ::Rack::Utils
         alias_method :h, :escape_html
       end
 
@@ -43,10 +43,10 @@ module Hilios
       end
     end
 
-    class Application < Base
+    class Rack < Base
       # Middlewares
-      use Rack::Session::Pool, :expire_after => 2592000
-      use Rack::ShowExceptions
+      use ::Rack::Session::Pool, :expire_after => 2592000
+      use ::Rack::ShowExceptions
       # Require all controller as middlewares
       Dir["./app/**/*.rb"].each do |file_path|
         require file_path

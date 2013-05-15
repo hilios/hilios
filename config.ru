@@ -1,2 +1,2 @@
-require ::File.expand_path('config/frontend',  File.dirname(__FILE__))
-run Hilios::Frontend::Application
+require ::File.expand_path('config/application',  File.dirname(__FILE__))
+run Hilios::Application::Rack

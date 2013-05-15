@@ -6,8 +6,8 @@ rescue LoadError
 end
 
 def app
-  require ::File.expand_path('../config/frontend',  __FILE__)
-  Hilios::Frontend::Application
+  require ::File.expand_path('../config/application',  __FILE__)
+  Hilios::Application::Rack
 end
 
 # task :default => :test
