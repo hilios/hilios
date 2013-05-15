@@ -1,3 +1,5 @@
+require './config/screenshots'
+
 class Views < Hilios::Application::Base
 
   before do
@@ -23,7 +25,7 @@ class Views < Hilios::Application::Base
 
     # Screenshot
     def screenshot_url(url)
-      File.join('system/screenshots', "#{Digest::MD5.hexdigest(url)}.png")
+      Screenshots.path_for(url)
     end
 
     def screenshot_path(url)
