@@ -24,16 +24,16 @@ class Views < Hilios::Application::Base
     end
 
     # Screenshot
-    def screenshot_url(url)
+    def screenshot_path(url)
       Screenshots.path_for(url)
     end
 
-    def screenshot_path(url)
-      File.join(settings.public_folder, screenshot_url(url))
+    def screenshot_full_path(url)
+      File.join(settings.public_folder, screenshot_path(url))
     end
 
     def has_screenshot?(url)
-      File.exists?(screenshot_path(url))
+      File.exists?(screenshot_full_path(url))
     end
   end
 

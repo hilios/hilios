@@ -1,0 +1,29 @@
+@import 'compass/css3';
+
+.screenshot{
+  @include border-radius(5px);
+  background-color: #e5e5e5;
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 640px;
+
+  .button{
+    @include border-radius(15px);
+    background-color: #999999;
+    display: inline-block;
+    margin-right: 5px;
+    height: 15px;
+    width: 15px;
+  }
+
+  .address{
+    background-color: #ffffff;
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+
+  img{
+    height: 480px;
+    width: 640px;
+  }
+}
