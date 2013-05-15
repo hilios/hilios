@@ -1,7 +1,6 @@
 require 'digest/md5'
 
 class Screenshots
-
   class << self
     def path
       '/system/screenshots'.freeze
