@@ -1,10 +1,6 @@
 - content_for(:title ) { "#{@post['title']} - %s" }
 
 article
-  nav
-    a.back(href='/' target='_self')
-      img(src=image_path('back.svg') alt='Back')
-
   h1
     img.type(src=image_path("#{@post['type']}.svg"))
     = @post['title']
@@ -25,3 +21,7 @@ article
     | Q/A
   - when :quote
     | Quote
+
+  nav
+    a.back(href='/' target='_self')
+      img(src=image_path('back.svg') alt='Back')
