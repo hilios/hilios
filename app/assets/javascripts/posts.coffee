@@ -5,10 +5,10 @@ app.views.posts = Backbone.View.extend
     'inview': 'paginate'
 
   paginate: (event, isInView, visiblePartX, visiblePartY)->
-    if visiblePartY is 'bottom'
-    $target = $(event.target)
-    $spin   = $target.find('.spin')
-    if not $spin.length
+    if visiblePartY is 'bottom' and not @hasSpin()
       $spin = $('<div class="spin"></div>')
       $spin.appendTo(event.target)
       $spin.spin('large')
+
+  hasSpin: ->
+    @$el.find('.spin').length > 0
