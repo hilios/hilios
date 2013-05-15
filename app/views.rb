@@ -20,6 +20,19 @@ class Views < Hilios::Application::Base
     def avatar(size=nil)
       tumblr.avatar(blog_name, size)
     end
+
+    # Screenshot
+    def screenshot_url(url)
+      File.join('system/screenshots', "#{Digest::MD5.hexdigest(url)}.png")
+    end
+
+    def screenshot_path(url)
+      File.join(settings.public_folder, screenshot_url(url))
+    end
+
+    def has_screenshot?(url)
+      File.exists?(screenshot_path(url))
+    end
   end
 
   get '/' do
@@ -34,11 +47,6 @@ class Views < Hilios::Application::Base
       slim :index
     end
   end
-
-  # get '/search' do
-  #   @posts = tumblr.posts(blog_name)['posts']
-  #   slim :search
-  # end
 
   get '/blog/:id/:slug' do |id, slug|
     @post = tumblr.posts(blog_name, {id: id})['posts'].first
