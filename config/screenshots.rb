@@ -4,7 +4,7 @@ class Screenshots
 
   class << self
     def path
-      'system/screenshots'.freeze
+      '/system/screenshots'.freeze
     end
 
     def path_for(url)
