@@ -1,14 +1,36 @@
 app.views.posts = Backbone.View.extend
-  page: 0
-
   events:
-    'inview': 'paginate'
+    'inview li:last': 'paginate'
+
+  initialize: ->
+    @page  = parseInt @$el.data('page') || 0
+    @total = parseInt @$el.data('total')
+    @total = Math.ceil @total / 20
+
+    @$spin = $('<li class="spin" />')
 
   paginate: (event, isInView, visiblePartX, visiblePartY)->
-    if visiblePartY is 'bottom' and not @hasSpin()
-      $spin = $('<li class="spin" />')
-      $spin.appendTo(event.target)
-      $spin.spin('large')
+    if not @hasSpin() and not @allLoaded()
+      @page++
+      # Set the spinner
+      @$spin.appendTo(@el)
+      @$spin.spin('large')
+      # Fetch resuts
+      $.get('/', page: @page).done(_.bind @render, @)
 
   hasSpin: ->
-    @$el.find('.spin').length > 0
+    @$el.has(@$spin).length > 0
+
+  allLoaded: ->
+    @page >= @total
+
+  render: (data, textStatus)->
+    return @fail.apply(@, arguments) if textStatus is not 'success'
+    # Remove spin and append result
+    @$spin.detach()
+    @$el.append(data)
+
+  fail: ->
+    console.log 'Failed!'
+    
+

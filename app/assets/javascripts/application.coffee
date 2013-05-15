@@ -7,13 +7,17 @@
 #= require_self
 #= require_tree .
 
-window.app = 
+window.app = _.extend {}, Backbone.Events,
   views: {}
 
   start: ->
+    self = @
+    self.viewsInstances = {}
+
     $('[data-view]').each ->
       viewName = $(@).data('view')
       view = new app.views[viewName](el: this)
+
 
 $ ->
   app.start()

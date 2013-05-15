@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Views < Hilios::Application::Base
 
   before do
@@ -6,6 +5,10 @@ class Views < Hilios::Application::Base
   end
 
   helpers do
+    def post_per_page
+      20.freeze
+    end
+
     def blog_name
       "hilios".freeze
     end
@@ -20,14 +23,22 @@ class Views < Hilios::Application::Base
   end
 
   get '/' do
-    @posts = tumblr.posts(blog_name)['posts']
-    slim :index
+    @page = request.params.delete('page').to_i || 0
+    @posts = tumblr.posts(blog_name, {
+      offset: @page * post_per_page
+    })['posts']
+
+    if request.xhr?
+      partial :post, collection: @posts
+    else
+      slim :index
+    end
   end
 
-  get '/search' do
-    # @posts = tumblr.posts(blog_name)['posts']
-    slim :posts
-  end
+  # get '/search' do
+  #   @posts = tumblr.posts(blog_name)['posts']
+  #   slim :search
+  # end
 
   get '/blog/:id/:slug' do |id, slug|
     @post = tumblr.posts(blog_name, {id: id})['posts'].first
