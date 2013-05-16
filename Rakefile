@@ -35,14 +35,15 @@ task :screenshot, :url, :path do |task, arguments|
   path_folder = File.expand_path(File.dirname(path))
   FileUtils.mkdir_p(path_folder) if not File.exists?(path_folder)
   # Generate the screenshot
-  puts "Capturing screenshot for #{url}"
+  puts "Capturing screenshot from #{url}"
   rasterize_path = File.expand_path('app/rasterize.js', File.dirname(__FILE__))
   Phantomjs.run(rasterize_path, url, path)
   puts "Resizing..."
   # Resize image
   image = MiniMagick::Image.new(path)
-  image.shave('1024x768')
-  image.resize('640x480!')
+  # image.shave('1024x768')
+  image.resize('640')
+  image.crop('x480!+0+0')
 end
 
 require 'tumblr_client'
