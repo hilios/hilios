@@ -44,7 +44,7 @@ task :screenshot, :url, :path do |task, arguments|
   # image.shave('1024x768')
   image.resize('640')
   image.crop('x480!+0+0')
-  puts "Ready!"
+  puts "Done!"
 end
 
 require 'tumblr_client'
