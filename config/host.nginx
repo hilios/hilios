@@ -6,39 +6,19 @@ upstream hilios {
 server {
   listen            80;
   server_name       edson.hilios.com.br;
-
   root              /var/ruby/hilios/current/public;
-  keepalive_timeout 5;
-  
-  # Long expire date for the assets
-  location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|pdf|txt|tar|wav|bmp|rtf|js|flv|swf|html|htm)$ {
-    expires         30d;
-    access_log      off;
-  }
 
-  location / {
-    proxy_set_header            X-Forwarded-For   $proxy_add_x_forwarded_for;
-    proxy_set_header            X-Real-IP         $remote_addr;
-    proxy_set_header            Host              $http_host;
-    
-    proxy_redirect              off;
-    proxy_connect_timeout       90;
-    proxy_send_timeout          90;
-    proxy_read_timeout          90;
-    proxy_buffer_size           4k;
-    proxy_buffers               4 32k;
-    proxy_busy_buffers_size     64k;
-    proxy_temp_file_write_size  64k;
+  keepalive_timeout     5;
+  client_max_body_size  4G;
 
-    client_max_body_size        10m;
-    client_body_buffer_size     128k;
+  try_files $uri/index.html $uri.html $uri @app;
 
-    # If you don't find the filename in the static files
-    # Then send the request for UNIX socket
-    if (!-f $request_filename) {
-      proxy_pass                http://hilios;
-      break;
-    }
+  location @app {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://hilios;
   }
 }
 # Content delivery network
