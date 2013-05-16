@@ -35,7 +35,7 @@ task :screenshot, :url, :path do |task, arguments|
   path_folder = File.expand_path(File.dirname(path))
   FileUtils.mkdir_p(path_folder) if not File.exists?(path_folder)
   # Generate the screenshot
-  puts "Capturing screenshot from #{url}"
+  puts "Capturing screenshot..."
   rasterize_path = File.expand_path('app/rasterize.js', File.dirname(__FILE__))
   Phantomjs.run(rasterize_path, url, path)
   puts "Resizing..."
@@ -44,6 +44,7 @@ task :screenshot, :url, :path do |task, arguments|
   # image.shave('1024x768')
   image.resize('640')
   image.crop('x480!+0+0')
+  puts "Ready!"
 end
 
 require 'tumblr_client'
