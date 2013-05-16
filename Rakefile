@@ -24,10 +24,10 @@ namespace :assets do
   task :precompile => :assets
 end
 
+require 'phantomjs'
+require 'mini_magick'
 desc "Generates a screenshot from an URL with 640x480px"
 task :screenshot, :url, :path do |task, arguments|
-  require 'phantomjs'
-  require 'mini_magick'
   # Set the variables
   url = arguments[:url]
   path = arguments[:path]
@@ -37,10 +37,12 @@ task :screenshot, :url, :path do |task, arguments|
   # Generate the screenshot
   rasterize_path = File.expand_path('app/rasterize.js', File.dirname(__FILE__))
   Phantomjs.run(rasterize_path, url, path)
+  puts "Phantomjs finished"
+  puts "Resizing..."
   # Resize image
   image = MiniMagick::Image.new(path)
-  image.resize('640x')
-  image.crop('x480!+0+0')
+  image.shave('1024x768')
+  image.resize('640x480!')
 end
 
 desc "Fetch blog links and take a screenshot"
@@ -56,7 +58,7 @@ task :take_screenshots, :page do |task, args|
     type: 'link', limit: 20, offset: args[:page].to_i * 20
   })['posts']
 
-  puts posts.length
+  puts "Fetching #{posts.length} links"
 
   for post in posts
     file_path = Screenshots.path_for(post['url'])
