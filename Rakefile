@@ -35,9 +35,9 @@ task :screenshot, :url, :path do |task, arguments|
   path_folder = File.expand_path(File.dirname(path))
   FileUtils.mkdir_p(path_folder) if not File.exists?(path_folder)
   # Generate the screenshot
+  puts "Capturing screenshot for #{url}"
   rasterize_path = File.expand_path('app/rasterize.js', File.dirname(__FILE__))
   Phantomjs.run(rasterize_path, url, path)
-  puts "Phantomjs finished"
   puts "Resizing..."
   # Resize image
   image = MiniMagick::Image.new(path)
@@ -45,14 +45,12 @@ task :screenshot, :url, :path do |task, arguments|
   image.resize('640x480!')
 end
 
+require 'tumblr_client'
+require './config/screenshots.rb'
+require './config/initializers/tumblr.rb'
 desc "Fetch blog links and take a screenshot"
 task :take_screenshots, :page do |task, args|
   args.with_defaults(page: 0)
-
-  require 'tumblr_client'
-  require './config/screenshots.rb'
-  require './config/initializers/tumblr.rb'
-
   tumblr = Tumblr::Client.new
   posts = tumblr.posts('hilios', {
     type: 'link', limit: 20, offset: args[:page].to_i * 20
