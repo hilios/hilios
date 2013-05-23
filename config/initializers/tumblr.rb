@@ -1,5 +1,13 @@
 require 'tumblr_client'
 
+TUMBLR_KEY = File.expand_path('~/.tumblr')
+
+if File.exists? TUMBLR_KEY
+  TUMBLR_KEY = YAML::load(TUMBLR_KEY)
+else
+  raise "Tumblr API configuration not found at #{TUMBLR_KEY}"
+end
+
 Tumblr.configure do |config|
   config.consumer_key       = "t8mZzTpHohTFzSKasaJxWNkzJtA7chRKHSSPEiCwuaRYxrzqj5"
   config.consumer_secret    = "WcvO9DjYj3LWJmEHu483ZU7z84goV0bCo5WXARlDf6jLzP4wsy"
