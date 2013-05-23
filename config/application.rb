@@ -6,6 +6,7 @@ require 'redcarpet'
 require 'sinatra/base'
 require 'sinatra/partial'
 require 'sinatra/contrib/all'
+require 'sinatra/sprockets'
 require 'active_support/inflector'
 
 Dir["./config/initializers/**/*.rb"].each { |f| require f }
@@ -29,10 +30,10 @@ module Hilios
       # Extensions
       register Sinatra::Contrib
       register Sinatra::Partial
-      register Sinatra::AssetsPipeline
+      register Sinatra::Sprockets
       # Helpers
       helpers do
-        include ::Rack::Utils
+        include Rack::Utils
         alias_method :h, :escape_html
       end
 
@@ -43,10 +44,10 @@ module Hilios
       end
     end
 
-    class Rack < Base
+    class Boot < Base
       # Middlewares
-      use ::Rack::Session::Pool, :expire_after => 2592000
-      use ::Rack::ShowExceptions
+      use Rack::Session::Pool, :expire_after => 2592000
+      use Rack::ShowExceptions
       # Require all controller as middlewares
       Dir["./app/**/*.rb"].each do |file_path|
         require file_path

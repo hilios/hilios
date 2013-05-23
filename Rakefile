@@ -7,22 +7,10 @@ end
 
 def app
   require ::File.expand_path('../config/application',  __FILE__)
-  Hilios::Application::Rack
+  Hilios::Application::Boot
 end
 
-# task :default => :test
 
-require 'rake/sprocketstask'
-Rake::SprocketsTask.new do |t|
-  t.environment = app.sprockets
-  t.output      = File.join(app.public_folder, app.assets_prefix)
-  t.assets      = app.assets_precompile
-end
-
-desc "Precompile assets"
-namespace :assets do
-  task :precompile => :assets
-end
 
 require 'phantomjs'
 require 'mini_magick'
@@ -38,12 +26,12 @@ task :screenshot, :url, :path do |task, arguments|
   puts "Capturing screenshot..."
   rasterize_path = File.expand_path('app/rasterize.js', File.dirname(__FILE__))
   Phantomjs.run(rasterize_path, url, path)
-  puts "Resizing..."
+  # puts "Resizing..."
   # Resize image
-  image = MiniMagick::Image.new(path)
-  # image.shave('1024x768')
-  image.resize('640')
-  image.crop('x480!+0+0')
+  # image = MiniMagick::Image.new(path)
+  # # image.shave('1024x768')
+  # image.resize('640')
+  # image.crop('x480!+0+0')
   puts "Done!"
 end
 

@@ -2,31 +2,28 @@ source 'http://rubygems.org'
 
 gem 'rake'
 
-gem 'sinatra'             # Webserver
-gem 'sinatra-contrib'     # Sinatra helpers
-gem 'sinatra-partial'     # Partial helper
-gem 'activesupport'       # Dubious semantics and helper methods
-gem 'unicorn'             # Rack handler
+gem 'sinatra'                 # Webserver
+gem 'sinatra-contrib'         # Sinatra helpers
+gem 'sinatra-partial'         # Partial helper
+gem 'sinatra-sprockets-wheel' # Assets pipeline
 
-gem 'tumblr_client'       # Tumblr API Client
+gem 'activesupport'           # Dubious semantics and helper methods
+gem 'unicorn'                 # Rack handler
 
-gem 'therubyracer'        # Javascript evaluator
-gem 'coffee-script'       # Javascript compiler
-gem 'compass'             # Stylesheet framework
+gem 'tumblr_client'           # Tumblr API Client
 
-gem 'sprockets'           # Assets pipeline
-gem 'sprockets-sass'      # Integrate 
-gem 'sprockets-helpers'   # Helpers for generating paths
-
-gem 'slim'                # HTML parser
-gem 'redcarpet'           # Markdown parser
+gem 'slim'                    # HTML parser
+gem 'redcarpet'               # Markdown parser
 
 gem 'phantomjs',    require: false # Generate url screenshots
 gem 'mini_magick',  require: false # Manipulate images
 
-# gem 'eventmachine'         # Non-blocking webserver
-# gem 'em-websocket'         # Websocket
-
+group :assets do
+  gem 'sprockets-sass'
+  gem 'therubyracer'            # Javascript evaluator
+  gem 'coffee-script'           # Javascript compiler
+  gem 'compass'                 # Stylesheet framework
+end
 
 group :development do
   gem 'shotgun'             # Auto reload Rack environment
@@ -35,8 +32,4 @@ group :development do
   gem 'capistrano-unicorn'
   gem 'rvm-capistrano'
   gem 'capistrano_colors'
-end
-
-group :test do
-
 end
