@@ -5,7 +5,7 @@
   background-color: #e5e5e5;
   margin: 20px auto;
   padding: 5px;
-  width: 640px;
+  max-width: 640px;
 
   .button{
     @include border-radius(15px);
@@ -23,14 +23,13 @@
   }
 
   img{
-    height: 480px;
-    width: 640px;
+    width: 100%;
   }
 
   .frame{
     background-color: #ffffff;
-    height: 440px;
     padding: 20px;
-    width: 600px; 
+    max-height: 480px;
+    max-width: 640px;
   }
 }
