@@ -9,8 +9,8 @@ def app
   require ::File.expand_path('../config/application',  __FILE__)
   Hilios::Application::Boot
 end
-
-
+require 'sinatra/sprockets/task'
+Sinatra::Sprockets::Task.define(app)
 
 require 'phantomjs'
 require 'mini_magick'
