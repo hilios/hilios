@@ -28,10 +28,8 @@ task :screenshot, :url, :path do |task, arguments|
   Phantomjs.run(rasterize_path, url, path)
   # puts "Resizing..."
   # Resize image
-  # image = MiniMagick::Image.new(path)
-  # # image.shave('1024x768')
-  # image.resize('640')
-  # image.crop('x480!+0+0')
+  image = MiniMagick::Image.new(path)
+  image.resize('640x480')
   puts "Done!"
 end
 

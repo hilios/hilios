@@ -26,6 +26,7 @@ if (system.args.length < 3 || system.args.length > 5) {
             phantom.exit();
         } else {
             window.setTimeout(function () {
+                page.clipRect = {top: 0, left: 0, width: 1024, height: 768};
                 page.render(output);
                 phantom.exit();
             }, 200);
