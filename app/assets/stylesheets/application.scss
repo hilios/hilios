@@ -24,7 +24,7 @@ header{
   @include transition(height .25s);
   background-color: #3498db;
   color: #ffffff;
-  height: 70px;
+  height: 96px;
   padding: $padding;
   text-align: center;
 
@@ -50,7 +50,7 @@ header{
   }
   // On hover effects
   &:hover{
-    height: 160px;
+    height: 120px;
 
     .avatar{
       @include transition(transform .25s);
@@ -115,12 +115,13 @@ nav{
   text-align: center;
 
   a{
+    $radius: 70px;
     @include transition(all .5s);
     border-bottom-style: none !important;
     display: inline-block;
     margin: 0 12.5px;
-    height: 50px;
-    width: 50px;
+    height: $radius;
+    width: $radius;
 
     &:hover{
       @include transition(all .5s);
@@ -128,7 +129,7 @@ nav{
     }
 
     img{
-      height: 50px;
+      height: $radius;
     }
   }
 }
