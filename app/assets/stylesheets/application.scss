@@ -32,6 +32,7 @@ header{
     @include transition(transform .25s);
     @include border-radius(130px);
     @include single-box-shadow(rgba(0,0,0,0.2), 2px, 2px, 2px, 0);
+    border: 3px solid #ffffff;
     display: inline-block;
     height: 96px;
   }
