@@ -1,16 +1,16 @@
 require 'tumblr_client'
 
-TUMBLR_KEY = File.expand_path('~/.tumblr')
+tumblr_config = File.expand_path('~/.tumblr')
 
-if File.exists? TUMBLR_KEY
-  TUMBLR_KEY = YAML::load(TUMBLR_KEY)
+if File.exists? tumblr_config
+  tumblr_config = YAML::load_file(tumblr_config)
 else
   raise "Tumblr API configuration not found at #{TUMBLR_KEY}"
 end
 
 Tumblr.configure do |config|
-  config.consumer_key       = "t8mZzTpHohTFzSKasaJxWNkzJtA7chRKHSSPEiCwuaRYxrzqj5"
-  config.consumer_secret    = "WcvO9DjYj3LWJmEHu483ZU7z84goV0bCo5WXARlDf6jLzP4wsy"
-  config.oauth_token        = "RREvc3H0xxK1heEWjzMNswBxYzQsLIkvwyRQoJ8pqUzWzxpj23"
-  config.oauth_token_secret = "qvgv1HjiXt99jzBlyS7weY9MlY9pp5Y1tbBLTALbA0KS7PfE5U"
+  config.consumer_key       = tumblr_config['consumer_key']
+  config.consumer_secret    = tumblr_config['consumer_secret']
+  config.oauth_token        = tumblr_config['oauth_token']
+  config.oauth_token_secret = tumblr_config['oauth_token_secret']
 end
