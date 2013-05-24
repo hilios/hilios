@@ -18,7 +18,7 @@ set :repository,          "git@github.com:hilios/#{application}.git"
 set :branch,              "master"
 set :scm_verbose,         true
 # RVM config
-set :rvm_ruby_string,     "1.9.3@#{application}"
+set :rvm_ruby_string,     "2.0.0@#{application}"
 # set :rvm_type,            :system  # Copy the exact line. I really mean :system here
 # Keep 3 versions
 set :keep_releases,       3
