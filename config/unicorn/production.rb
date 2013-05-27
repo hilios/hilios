@@ -1,4 +1,4 @@
-app_path = "/var/ruby/hilios"
+app_path = "/home/ubuntu/ruby/hilios"
 
 timeout 30
 worker_processes 1

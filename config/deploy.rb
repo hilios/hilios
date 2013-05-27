@@ -1,7 +1,7 @@
 require "capistrano_colors"
 # App config
 set :application,         "hilios"
-set :deploy_to,           "/var/ruby/#{application}"
+set :deploy_to,           "/home/ubuntu/ruby/#{application}"
 # Custom recepies
 require "bundler/capistrano"  # Bundler 
 require "rvm/capistrano"      # RVM

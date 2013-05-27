@@ -1,12 +1,12 @@
 # Unicorn socket
 upstream hilios {
-  server unix:/var/ruby/hilios/shared/sockets/unicorn.sock fail_timeout=0;
+  server unix:/home/ubuntu/ruby/hilios/shared/sockets/unicorn.sock fail_timeout=0;
 }
 # Main application
 server {
   listen            80;
   server_name       edson.hilios.com.br;
-  root              /var/ruby/hilios/current/public;
+  root              /home/ubuntu/ruby/hilios/current/public;
 
   keepalive_timeout     5;
   client_max_body_size  4G;
@@ -26,7 +26,7 @@ server {
   listen            80;
   server_name       cdn.hilios.com.br;
 
-  root              /var/ruby/hilios/current/public;
+  root              /home/ubuntu/ruby/hilios/current/public;
   
   expires           30d;
   access_log        off;
@@ -37,7 +37,7 @@ server {
   listen            80;
   server_name       static.hilios.com.br;
 
-  root              /var/ruby/hilios/static;
+  root              /home/ubuntu/ruby/hilios/static;
   
   expires           30d;
   access_log        off;
