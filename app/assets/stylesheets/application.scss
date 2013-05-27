@@ -24,7 +24,7 @@ header{
   @include transition(height .25s);
   background-color: #3498db;
   color: #ffffff;
-  height: 96px;
+  height: 100px;
   padding: $padding;
   text-align: center;
 
@@ -35,6 +35,12 @@ header{
     border: 3px solid #ffffff;
     display: inline-block;
     height: 96px;
+    overflow: hidden;
+    width: 96px;
+
+    img{
+      height: 96px;
+    }
   }
   a{
     display: block;
@@ -51,7 +57,7 @@ header{
   }
   // On hover effects
   &:hover{
-    height: 120px;
+    height: 125px;
 
     .avatar{
       @include transition(transform .25s);
