@@ -5,7 +5,7 @@ gem 'rake'
 gem 'sinatra'                 # Webserver
 gem 'sinatra-contrib'         # Sinatra helpers
 gem 'sinatra-partial'         # Partial helper
-gem 'sinatra-sprockets-wheel' # Assets pipeline
+gem 'sinatra-sprockets-chain' # Assets pipeline
 
 gem 'activesupport'           # Dubious semantics and helper methods
 gem 'unicorn'                 # Rack handler

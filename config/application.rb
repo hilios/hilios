@@ -25,11 +25,12 @@ module Hilios
       enable :sessions
       set    :session_secret, '1Gikx4OTdoQp9OLjxfK76NBm065IzPkYTAirE8iUT5wgXAIW30dbjxOr5riSvRrKEQ7JxDsk7Kfz363Vif2erbgSZt3Xjh6hs8ZX8cO6X0ntzYYhgYzUmedQG8WielBh'
       # Assets pipeline
-      set :assets_path, %w(app/assets/vendor app/assets/stylesheets app/assets/javascripts app/assets/images)
+      set :assets_path, Dir['app/assets/**']
       set :assets_precompile, %w(application.js application.css *.svg *.ttf)
+      set :assets_css_compressor, :sass
       # In production serve assets from cdn
       configure :production do
-        set :assets_host, '//cdn.hilios.com.br'
+        set :assets_host, 'cdn.hilios.com.br'
       end
       # Extensions
       register Sinatra::Contrib
