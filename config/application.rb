@@ -27,6 +27,10 @@ module Hilios
       # Assets pipeline
       set :assets_path, %w(app/assets/vendor app/assets/stylesheets app/assets/javascripts app/assets/images)
       set :assets_precompile, %w(application.js application.css *.svg *.ttf)
+      # In production serve assets from cdn
+      configure :production do
+        set :assets_host, '//cdn.hilios.com.br'
+      end
       # Extensions
       register Sinatra::Contrib
       register Sinatra::Partial
