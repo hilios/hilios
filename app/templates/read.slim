@@ -2,10 +2,11 @@
 
 article
   h1
-    / img.type(src=image_path("#{@post['type']}.svg"))
+    
     = @post['title']
 
   small
+    img.type(src=image_path("#{@post['type']}.svg"))
     = Time.parse(@post['date']).strftime('%b %d, %Y')
     img.tag(src=image_path('tag.svg'))
     = @post['tags'].map { |tag| "##{tag}" }.join(', ')
@@ -30,5 +31,5 @@ article
     | Quote
 
   nav
-    a.back(href='/' target='_self')
-      img(src=image_path('back.svg') alt='Back')
+    a(href='/' target='_self')
+      img.back(src=image_path('back.svg') alt='Back')

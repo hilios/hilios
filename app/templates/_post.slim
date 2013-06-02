@@ -1,9 +1,9 @@
 li
-  / img.type(src=image_path("#{post['type']}.svg"))
   a(href="/blog/#{post['id']}/#{post['slug']}" target="_self")
     strong = post['title']
   br
   small
+    img.type(src=image_path("#{post['type']}.svg"))
     = Time.parse(post['date']).strftime('%b %d, %Y')
     img.tag(src=image_path('tag.svg'))
     = post['tags'].map { |tag| "##{tag}" }.join(', ')

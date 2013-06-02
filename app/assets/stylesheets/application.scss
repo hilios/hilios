@@ -6,6 +6,7 @@
  */
 
 @import 'compass/css3';
+@import 'compass/typography/text/force-wrap';
 
 $padding:   25px;
 $fontColor: #434343;
@@ -70,16 +71,19 @@ header{
   }
 }
 article{
+  @include force-wrap();
   max-width: 1000px;
   margin: 0 auto;
   padding: $padding;
 
   h1{
     line-height: 45px;
+    margin-bottom: 0;
   }
   .type{
-    height: 30px;
-    margin-right: 10px;
+    height: 15px;
+    margin: 0 5px 0 0;
+    width: 15px;
   }
   .tag{
     height: 15px;
@@ -88,11 +92,12 @@ article{
   }
   .posts{
     list-style: none;
+    margin-top: 40px;
     padding: 0;
 
     li{
-      line-height: 30px;
-      margin-bottom: 20px;
+      line-height: 29px;
+      margin-bottom: 0px;
     }
   }
   small{
@@ -127,8 +132,8 @@ nav{
     border-bottom-style: none !important;
     display: inline-block;
     margin: 0 12.5px;
-    height: $radius;
-    width: $radius;
+    // height: $radius;
+    // width: $radius;
 
     &:hover{
       @include transition(all .5s);
@@ -137,6 +142,10 @@ nav{
 
     img{
       height: $radius;
+
+      &.back{
+        height: $radius - 20px;
+      }
     }
   }
 }

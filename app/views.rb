@@ -2,10 +2,6 @@ require './config/screenshots'
 
 class Views < Hilios::Application::Base
 
-  before do
-    @blog = tumblr.blog_info(blog_name)['blog']
-  end
-
   helpers do
     def post_per_page
       20.freeze
@@ -16,7 +12,7 @@ class Views < Hilios::Application::Base
     end
 
     def tumblr
-      @tumblr ||= Tumblr::Client.new
+      @@tumblr ||= Tumblr::Client.new
     end
 
     def avatar(size=nil)
@@ -37,6 +33,10 @@ class Views < Hilios::Application::Base
     end
   end
 
+  before do
+    @blog ||= tumblr.blog_info(blog_name)['blog']
+  end
+
   get '/' do
     @page = request.params.delete('page').to_i || 0
     @posts = tumblr.posts(blog_name, {
@@ -55,10 +55,6 @@ class Views < Hilios::Application::Base
     slim :read
   end
 
-  not_found do
-    slim :not_found
-  end
-
   get '/linkedin' do
     redirect 'http://www.linkedin.com/in/edsonhilios'
   end
@@ -69,5 +65,9 @@ class Views < Hilios::Application::Base
 
   get '/twitter' do
     redirect 'http://twitter.com/hilios'
+  end
+
+  not_found do
+    slim :not_found
   end
 end
