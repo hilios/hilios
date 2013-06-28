@@ -1,0 +1,30 @@
+@media (max-width: 500px) {
+  body{
+    font-size: 16px;
+    line-height: 29px;
+  }
+  article{
+    h1{
+      font-size: 25px;
+      line-height: 32px;
+    }
+  }
+  nav{
+    a{
+      $radius: 50px;
+      img{
+        height: $radius;
+      }
+      &.back{
+        height: $radius;
+      }
+    }
+  }
+  footer{
+    text-align: center;
+
+    .license{
+      display: block;
+    }
+  }
+}

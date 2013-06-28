@@ -110,6 +110,9 @@ GEM
       sprockets (~> 2.0)
       tilt (~> 1.1)
     subexec (0.2.3)
+    susy (1.0.9)
+      compass (>= 0.12.2)
+      sass (>= 3.2.0)
     temple (0.6.5)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
@@ -149,6 +152,7 @@ DEPENDENCIES
   sinatra-sprockets-chain
   slim
   sprockets-sass
+  susy
   therubyracer
   tumblr_client
   unicorn

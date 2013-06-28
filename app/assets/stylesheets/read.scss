@@ -2,7 +2,7 @@
 
 .screenshot{
   @include border-radius(5px);
-  background-color: #b7b7b7;
+  background-color: #f3f3f4;
   margin: 20px auto;
   max-width: 640px;
 
@@ -24,6 +24,8 @@
 
   img{
     background-color: #ffffff;
+    display: block;
+    margin: 0;
     width: 100%;
   }
 

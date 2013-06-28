@@ -1,4 +1,4 @@
-app.views.posts = Backbone.View.extend
+Posts = Backbone.View.extend
   events:
     'inview li:last': 'paginate'
 
@@ -6,7 +6,6 @@ app.views.posts = Backbone.View.extend
     @page  = parseInt @$el.data('page') || 0
     @total = parseInt @$el.data('total')
     @total = Math.ceil @total / 20
-
     @$spin = $('<li class="spin" />')
 
   paginate: (event, isInView, visiblePartX, visiblePartY)->
@@ -33,4 +32,5 @@ app.views.posts = Backbone.View.extend
   fail: ->
     console.log 'Failed!'
     
-
+# Register this view
+app.register('views.Posts', Posts)

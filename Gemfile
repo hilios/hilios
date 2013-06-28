@@ -19,7 +19,8 @@ gem 'phantomjs',    require: false # Generate url screenshots
 gem 'mini_magick',  require: false # Manipulate images
 
 group :assets do
-  gem 'sprockets-sass'
+  gem 'susy'                    # Compass grid framework
+  gem 'sprockets-sass'          # CSS compiler
   gem 'therubyracer'            # Javascript evaluator
   gem 'coffee-script'           # Javascript compiler
   gem 'compass'                 # Stylesheet framework

@@ -1,3 +1,4 @@
+#= require paper
 #= require spin
 #= require jquery
 #= require jquery.spin
@@ -7,17 +8,28 @@
 #= require_self
 #= require_tree .
 
-window.app = _.extend {}, Backbone.Events,
-  views: {}
+String::constantize = ->
+  "-#{@}".replace /-+(.)?/g, (match, chr)-> 
+    if chr then chr.toUpperCase() else ''
 
-  start: ->
-    self = @
-    self.viewsInstances = {}
+app = _.extend {}, Backbone.Events,
 
-    $('[data-view]').each ->
-      viewName = $(@).data('view')
-      view = new app.views[viewName](el: this)
+  _instances: {}
 
+  register: (name, instance)->
+    if name in instance
+      throw "Instace for #{name} cannot be override!"
+    
+    @_instances[name] = instance
 
-$ ->
-  app.start()
+  pkg: (name) ->
+    @_instances[name]
+
+  run: ->
+    $('[data-view]').each (index, el)=>
+      viewName = $(el).data('view').constantize()
+      view = new (@pkg("views.#{viewName}"))(el: el)
+
+$ -> app.run()
+
+window.app = app
