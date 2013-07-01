@@ -4,8 +4,6 @@ radToDeg = (radians)->
     (radians * 180 / Math.PI)
 
 Background = Backbone.View.extend
-  events:
-    'mousemove': 'setAngle'
 
   distance: 35
 
@@ -19,6 +17,7 @@ Background = Backbone.View.extend
   initialize: ->
     @width  = $(window).width()
     @height = $(window).height()
+    @length = Math.sqrt(Math.pow(@width, 2), Math.pow(@height, 2))
     # Setup
     @$el.height $(window).height()
     # Setup Paper.js
@@ -43,16 +42,9 @@ Background = Backbone.View.extend
 
       @pattern.addChild(path)
 
-    # Compass
-    @compass = new Path()
-    @compass.strokeColor = 'red'
-    @compass.strokeWidth = 3
-
-    @compass.add([view.center.x, view.center.y])
-    @compass.add([view.center.x + 50, view.center.y])
-
     view.draw()
     view.onFrame = _.bind @render, @
+    $(window).mousemove _.bind @setAngle, @
 
   setAngle: (event)->
     boxCenterX = view.center.x
@@ -63,15 +55,14 @@ Background = Backbone.View.extend
     # Find the angle in radians
     radians = Math.atan(y / x)
     # Correct the angle by quadrant
-    if event.pageX > boxCenterX && event.pageY < boxCenterY then radians += Math.PI / 2;
-    if event.pageX > boxCenterX && event.pageY > boxCenterY then radians += Math.PI / 2;
-    if event.pageX < boxCenterX && event.pageY > boxCenterY then radians += Math.PI * 1.5;
-    if event.pageX < boxCenterX && event.pageY < boxCenterY then radians += Math.PI * 1.5;
-    # if event.pageX > boxCenterX && boxCenterY < event.pageY then radians -= 2 * Math.PI
+    if event.pageX >= boxCenterX && event.pageY <= boxCenterY then radians += Math.PI
+    if event.pageX >= boxCenterX && event.pageY >= boxCenterY then radians += Math.PI
+    if event.pageX <= boxCenterX && event.pageY >= boxCenterY then radians += Math.PI * 2
     
     # Convert the angles to degress without significance
+    @lastAngle = @angle + 0 || 0
     @angle = radToDeg(radians).toFixed(0)
-    console.log "#{@angle}º"
+    # console.log "#{@angle}º"
 
   render: ->
     # @delta = ((@angle || 0) - (@currentAngle || 0)) / 5

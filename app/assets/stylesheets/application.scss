@@ -37,15 +37,18 @@ body{
   line-height: $line-height;
 }
 header{
+  $height: 360px - $padding * 2;
   @include border-radius($border-radius);
   background: #ffffff;
   border: 1px solid #ecf0f1;
-  overflow: hidden;
+  height: $height;
   left: $padding;
+  margin-top: $height / -2;
+  overflow: hidden;
   padding: $padding;
   position: fixed;
   text-align: center;
-  top: $padding;
+  top: 50%;
   width: $canvas-width - ($padding * 4);
   z-index: 100;
 
@@ -93,7 +96,7 @@ a{
   }
 }
 article{
-  padding: $padding;
+  padding: $padding $padding * 2;
   margin-left: $canvas-width;
 
   h1{
@@ -123,7 +126,7 @@ article{
 .posts{
   list-style: none;
   margin: 0;
-  padding: 0 $padding;
+  padding: 0;
 
   li{
     margin: $padding 0;
