@@ -64,6 +64,18 @@ header{
   width: $canvas-width - ($padding * 4);
   z-index: 100;
 
+  .home{
+    $width: 50px;
+    left: $canvas-width / 2;
+    margin-left: $width / -2;
+    position: fixed;
+    top: $padding;
+    z-index: 200;
+
+    img{
+      height: $width;
+    }
+  }
   .avatar{
     @include border-radius(100%);
   }
@@ -75,14 +87,15 @@ nav{
   margin: ($padding * 0.5) 0;
 
   img{
-    @include transition(all 0.5s ease);
+    @include transition(opacity 0.5s ease);
+    @include opacity(1);
 
     height: 50px;
     margin-right: 10px;
     width: 50px;
 
     &:hover{
-      @include scaleX(20%);
+      @include opacity(0.7);
     }
   }
 }
