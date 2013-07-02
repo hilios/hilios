@@ -28,7 +28,6 @@ body,
 html{
   height: 100%;
 }
-
 body{
   background-color: #ffffff;
   color: $font-color;
@@ -36,12 +35,25 @@ body{
   font-size: $font-size;
   line-height: $line-height;
 }
+a{
+  @include transition(color 0.5s ease);
+
+  &:link,
+  &:visited{
+    color: lighten($font-color, 10%);
+  }
+  &:hover,
+  &:active,
+  &:visited:hover{
+    color: darken($font-color, 50%);
+  }
+}
 header{
-  $height: 360px - $padding * 2;
+  $height: 360px;
   @include border-radius($border-radius);
   background: #ffffff;
   border: 1px solid #ecf0f1;
-  height: $height;
+  height: $height - $padding * 2;
   left: $padding;
   margin-top: $height / -2;
   overflow: hidden;
@@ -63,9 +75,15 @@ nav{
   margin: ($padding * 0.5) 0;
 
   img{
+    @include transition(all 0.5s ease);
+
     height: 50px;
     margin-right: 10px;
     width: 50px;
+
+    &:hover{
+      @include scaleX(20%);
+    }
   }
 }
 footer{
@@ -82,25 +100,13 @@ footer{
     display: block;
   }
 }
-a{
-  @include transition(color 0.5s ease);
-
-  &:link,
-  &:visited{
-    color: lighten($font-color, 10%);
-  }
-  &:hover,
-  &:active,
-  &:visited:hover{
-    color: darken($font-color, 50%);
-  }
-}
 article{
   padding: $padding $padding * 2;
   margin-left: $canvas-width;
 
   h1{
     font-size: $font-size * 2;
+    font-weight: normal;
     line-height: $line-height * 2;
   }
   .date{
@@ -134,7 +140,7 @@ article{
   }
   a{
     font-size: $font-size * 1.25;
-    font-weight: bold;
+    font-weight: normal;
     text-decoration: none;
   }
   .date{
