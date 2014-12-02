@@ -1,18 +1,45 @@
 package tumblr
 
 import (
+	"encoding/json"
 	"fmt"
-	"log"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
+	"os/user"
 	"regexp"
 )
 
-var path = regexp.MustCompile("^/tumblr(/.*)$")
+var conf map[string]interface{}
 
-const ApiKey string = ""
+var path = regexp.MustCompile("/t(/.*)$")
 
+// Load the JSON configuration from file system and export to conf variable.
+// `TUMBLR_CONFIG` allows to change the configuration path uppon execution, it
+// defaults to `~/.tumblr`.
+func init() {
+	var confPath string = os.Getenv("TUMBLR_CONFIG")
+	// Use default configuration path
+	if confPath == "" {
+		usr, _ := user.Current()
+		confPath = fmt.Sprintf("%s/.tumblr", usr.HomeDir)
+	}
+	// Read the file
+	file, err := ioutil.ReadFile(confPath)
+	// Panic if couldn't read the conf file
+	if err != nil {
+		panic(err)
+	}
+	// Decode JSON to conf var
+	if err := json.Unmarshal(file, &conf); err != nil {
+		panic(err)
+	}
+}
+
+// Acts like a proxy server to Tumblr API to fetchs its results to the reponse.
+// Uses the URL path after /t/ prefix to dispatch the request.
 func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 	// Parse the API url
 	p := path.FindStringSubmatch(r.URL.Path)
@@ -20,9 +47,10 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 	// Creates a new request
 	t, _ := http.NewRequest(r.Method, url, nil)
 	// Inject the API key to the url
-	t.URL.RawQuery = fmt.Sprintf("api_key=%s&%s", ApiKey, t.URL.RawQuery)
+	t.URL.RawQuery = fmt.Sprintf("api_key=%s&%s",
+		conf["consumer_key"], t.URL.RawQuery)
 	// Print a log
-	log.Println(t.URL.String());
+	log.Println(t.URL.String())
 	// Do the request
 	c := http.Client{}
 	res, err := c.Do(t)
@@ -38,6 +66,6 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), 403)
 	}
-	// Dump the body to Request
+	// Dump body to the response
 	io.WriteString(w, string(body))
 }
