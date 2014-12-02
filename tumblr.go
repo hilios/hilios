@@ -17,8 +17,8 @@ var conf map[string]interface{}
 var path = regexp.MustCompile("/t(/.*)$")
 
 // Load the JSON configuration from file system and export to conf variable.
-// `TUMBLR_CONFIG` allows to change the configuration path uppon execution, it
-// defaults to `~/.tumblr`.
+// The `TUMBLR_CONFIG` enviroment variable allows to change the configuration
+// path uppon execution, defaults to `~/.tumblr`.
 func init() {
 	var confPath string = os.Getenv("TUMBLR_CONFIG")
 	// Use default configuration path
