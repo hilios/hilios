@@ -1,17 +1,18 @@
 package main
 
 import (
-	"fmt"
-	"hilios.com.br/tumblr"
+	"hilios/server"
 	"net/http"
+	"os"
 )
 
-func indexHanlder(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "hilios.com.br")
-}
+const STATIC_PATH = "./static"
 
 func main() {
-	http.HandleFunc("/", indexHanlder)
-	http.HandleFunc("/tumblr/", tumblr.ProxyHandler)
-	http.ListenAndServe(":8000", nil)
+	s := &server.Config{
+		Env:    os.Getenv("ENV"),
+		Static: STATIC_PATH,
+	}
+
+	http.ListenAndServe(":8000", s.Routes())
 }

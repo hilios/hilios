@@ -1,4 +1,4 @@
-package tumblr
+package server
 
 import (
 	"encoding/json"
@@ -40,7 +40,7 @@ func init() {
 
 // Acts like a proxy server to Tumblr API to fetchs its results to the reponse.
 // Uses the URL path after /t/ prefix to dispatch the request.
-func ProxyHandler(w http.ResponseWriter, r *http.Request) {
+func TumblrProxyHandler(w http.ResponseWriter, r *http.Request) {
 	// Parse the API url
 	p := path.FindStringSubmatch(r.URL.Path)
 	url := fmt.Sprintf("http://api.tumblr.com%s", p[1])
