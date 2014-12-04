@@ -1,0 +1,13 @@
+{
+  "dest": "static/bin/",
+  "app.js": [
+    "vendor/angular/angular.min.js",
+    "js/app.js",
+    "js/**/*.js"
+  ],
+  "app.css": [
+    "vendor/pure/pure-min.css",
+    "css/base.less",
+    "css/**/*.less"
+  ]
+}

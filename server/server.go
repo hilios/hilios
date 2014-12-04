@@ -10,9 +10,12 @@ type Config struct {
 
 func (c *Config) Routes() *http.ServeMux {
 	mux := http.NewServeMux()
-	// Serve static files if not production environment
+	// Setup development environment
 	if c.Env != PROD {
+		// Serve static files
 		mux.Handle("/", http.FileServer(http.Dir(c.Static)))
+		// Start gulp
+		gulp(c.Static)
 	}
 	// Proxy Tumblr API
 	mux.HandleFunc("/t/", TumblrProxyHandler)
