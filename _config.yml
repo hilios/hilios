@@ -3,4 +3,4 @@ baseurl:    http://hilios.github.io/hilios/
 highlight:  true
 sass:
   style:    :compressed
-  sass_dir: css
+  sass_dir: static
