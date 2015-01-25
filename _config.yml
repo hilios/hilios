@@ -1,0 +1,6 @@
+title: Edson Hilios
+baseurl:    http://hilios.github.io/hilios/
+highlight:  true
+sass:
+  style:    :compressed
+  sass_dir: static

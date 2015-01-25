@@ -1,0 +1,20 @@
+<!doctype html>
+<html class="no-js" data-ng-app="hilios">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ site.title }}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="{{ site.baseurl }}/static/app.css">
+</head>
+<body>
+  <!--[if lt IE 8]>
+  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  {{ content }}
+  <script src="{{ site.baseurl }}/static/app.js"></script>
+  {% include analytics.html %}
+</body>
+</html>
+

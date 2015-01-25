@@ -1,0 +1,26 @@
+@media screen and (max-width: 35.5em) {
+  ul.social li {
+    display: block;
+    text-align: center;
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 48em) {
+  header {
+    padding-top: 8%;
+
+    h1 {
+      font-size: 2.5em;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.2em;
+    }
+  }
+
+  ul.social li {
+    font-size: 0.88em;
+  }
+}

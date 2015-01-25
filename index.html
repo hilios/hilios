@@ -1,0 +1,123 @@
+---
+layout: default
+---
+
+<nav>
+  <ul>
+    <li><a class="button"><i class="icon-menu"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/edsonhilios">Resumé</a></li>
+    <li><a href="https://speakerdeck.com/hilios">Talks</a></li>
+    <li><a href="https://github.com/hilios">GitHub</a></li>
+    <li><a href="http://hilios.tumblr.com/">Blog</a></li>
+  </ul>
+</nav>
+
+<header class="wow flipInX">
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <h1>Edson Hilios</h1>
+      <p>
+        Hello there, I'm a <i class="icon-embed"></i> <strong>Software Engineer</strong> and a  researcher in the fields of <strong>Innovation</strong> and <strong>Smart Cities</strong>,  ocasionally I do <strong>Talks</strong> and courses at events, universities and conferences.
+      </p>
+      <p>
+        I currently work at the <strong>Innovation Center</strong> of <i class="icon-office"></i> Telefónica | Vivo in
+        <i class="icon-location"></i> <strong>São Paulo</strong>, Brazil with.
+      </p>
+    </div>
+  </div>
+</header>
+
+<section class="social">
+  <ul class="social">
+    <li>
+      <a class="in" href="https://www.linkedin.com/in/edsonhilios">
+        <i class="icon-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+    </li>
+    <li>
+      <a class="tw" href="https://twitter.com/hilios">
+        <i class="icon-twitter"></i>
+        <span>Twitter</span>
+      </a>
+    </li>
+    <li>
+      <a class="tb" href="http://hilios.tumblr.com/">
+        <i class="icon-tumblr"></i>
+        <span>Tumblr</span>
+      </a>
+    </li>
+    <li>
+      <a class="gh" href="https://github.com/hilios">
+        <i class="icon-github"></i>
+        <span>GitHub</span>
+      </a>
+    </li>
+    <li>
+      <a class="sd" href="https://speakerdeck.com/hilios">
+        <i class="icon-mic"></i>
+        <span>SpeakerDeck</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section class="talks">
+  <h2>
+    <i class="icon-mic"></i>
+    Talks
+  </h2>
+  <div class="pure-g">
+    {% for post in site.posts %}
+    <div class="pure-u-1 pure-u-md-1-3">
+      <div class="talk">
+        {{ post.content }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="links">
+  <h2>
+    <i class="icon-link"></i>
+    Links
+  </h2>
+  {% raw %}
+  <div data-ng-controller="LinksController">
+    <div class="pure-g" data-ng-repeat="link in links">
+      <div class="pure-u-1 pure-u-md-1-5"></div>
+      <div class="pure-u-1 pure-u-md-3-5">
+        <p>
+          <a href="{{ link.url }}" target="_blank">
+            {{ link.title }}
+          </a>
+        </p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-5"></div>
+    </div>
+  </div>
+  <spinner></spinner>
+  {% endraw %}
+</section>
+
+<footer>
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <p>Built with love by Edson Hilios and hosted at GitHub Pages.</p>
+      <ul>
+        <li><a href="https://www.linkedin.com/in/edsonhilios">LinkedIn</a></li>
+        <li><a href="https://speakerdeck.com/hilios">SpeackerDeck</a></li>
+        <li><a href="https://github.com/hilios">GitHub</a></li>
+        <li><a href="http://hilios.tumblr.com/">Tumblr</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+{% raw %}
+<script type="text/ng-template" id="spinner.html">
+<div class="spinner" data-ng-if="isLoading">
+  <i class="icon-spinner"></i>
+</div>
+</script>
+{% endraw %}
