@@ -240,6 +240,18 @@ section.links {
     margin: 5px;
     padding: 10px;
   }
+
+  .more {
+    $size: 50px;
+    display: block;
+    background-color: #BDBDBD;
+    border-radius: 25px;
+    line-height: $size;
+    margin: 20px auto;
+    width: 150px;
+
+    color: #FFFFFF;
+  }
 }
 
 footer {

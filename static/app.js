@@ -17,7 +17,7 @@ app.factory('TumblrApi', function($http, TumblrApiKey) {
   var endpoint = 'http://api.tumblr.com/v2/blog/hilios.tumblr.com',
     tumblrConfig = {
       params: {
-        limit: 18,
+        limit: 9,
         jsonp: 'JSON_CALLBACK',
         api_key: TumblrApiKey
       }
