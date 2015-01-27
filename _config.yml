@@ -1,6 +1,7 @@
 title: Edson Hilios
 baseurl:    http://edson.hilios.com.br
-highlight:  true
+
+excerpt_separator: <!--more-->
 sass:
   style:    :compressed
   sass_dir: static
