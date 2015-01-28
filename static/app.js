@@ -2,15 +2,9 @@
 ---
 
 {% include_relative vendor/angular.js %}
-{% include_relative vendor/wow.js %}
 
 var app = angular.module('hilios', []);
 
-app.run(function() {
-  new WOW().init();
-});
-// /posts?api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4
-// http://api.tumblr.com/v2/blog/hilios.tumblr.com
 app.constant('TumblrApiKey', 'fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4');
 
 app.factory('TumblrApi', function($http, TumblrApiKey) {
