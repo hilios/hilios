@@ -25,6 +25,7 @@ function readFile(path, r) {
 
 function capture(url, path, r) {
   capturejs.capture({
+    timeout: 120000,
     uri: url,
     output: path,
     cliprect: '0x0x1280x720',
