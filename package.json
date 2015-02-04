@@ -1,0 +1,17 @@
+{
+  "name": "extras",
+  "version": "0.0.1",
+  "description": "Extras features",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hilios/hilios.git"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "devDependencies": {
+    "restify": "~2.8",
+    "phantom": "~0.7"
+  }
+}
