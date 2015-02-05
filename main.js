@@ -29,16 +29,22 @@ function capture(url, path, r) {
     timeout: 120000,
     uri: url,
     output: path,
-    cliprect: '0x0x1280x720',
-    viewportsize: '1280x769'
+    cliprect: '0x0x1024x576',
+    viewportsize: '1024x576'
   }, function(err) {
     if (err) {
       r.writeHead(500);
       r.end('');
     } else {
       // Resize
-      gm(path).resize(800).write(path, function(err) {});
-      readFile(path, r);
+      gm(path).resize(800).write(path, function(err) {
+        if (err) {
+          r.writeHead(500);
+          r.end('');
+        } else {
+          readFile(path, r);
+        }
+      });
     }
   });
 }
