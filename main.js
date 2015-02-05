@@ -3,6 +3,7 @@ var restify = require('restify');
 var crypto = require('crypto');
 var path = require('path')
 var fs = require('fs');
+var gm = require('gm')
 
 var server = restify.createServer({
   name: 'extras',
@@ -32,9 +33,11 @@ function capture(url, path, r) {
     viewportsize: '1280x769'
   }, function(err) {
     if (err) {
-      r.writeHead(400);
+      r.writeHead(500);
       r.end('');
     } else {
+      // Resize
+      gm(path).resize(800).write(path, function(err) {});
       readFile(path, r);
     }
   });

@@ -11,6 +11,7 @@
     "start": "node main.js"
   },
   "devDependencies": {
+    "gm": "~1.17",
     "restify": "~2.8",
     "phantom": "~0.7"
   }
