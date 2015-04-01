@@ -25,6 +25,7 @@ app.factory('TumblrApi', function($http, TumblrApiKey) {
   }
 });
 
+/**
 app.factory('Spinner', function($rootScope, $q) {
   function watch() {
     var promisses = Array.prototype.slice.call(arguments);
@@ -39,18 +40,6 @@ app.factory('Spinner', function($rootScope, $q) {
   return {
     'watch': watch
   };
-});
-
-app.controller('LinksController', function($scope, TumblrApi, Spinner) {
-  var q;
-
-  $scope.links = null;
-
-  q = TumblrApi.links().success(function(data) {
-    $scope.links = data.response.posts;
-  });
-
-  Spinner.watch(q);
 });
 
 app.directive('spinner', function() {
@@ -69,4 +58,17 @@ app.directive('spinner', function() {
       });
     }
   };
+});
+*/
+
+app.controller('LinksController', function($scope, TumblrApi) {
+  var q;
+
+  $scope.links = null;
+
+  q = TumblrApi.links().success(function(data) {
+    $scope.links = data.response.posts;
+  });
+
+  // Spinner.watch(q);
 });
