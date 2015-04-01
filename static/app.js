@@ -1,6 +1,6 @@
 ---
 ---
-
+/**
 {% include_relative vendor/angular.js %}
 
 var app = angular.module('hilios', []);
@@ -22,10 +22,9 @@ app.factory('TumblrApi', function($http, TumblrApiKey) {
       return $http.jsonp(endpoint + '/posts/link',
         angular.extend(tumblrConfig, config));
     }
-  }
+  };
 });
 
-/**
 app.factory('Spinner', function($rootScope, $q) {
   function watch() {
     var promisses = Array.prototype.slice.call(arguments);
@@ -59,7 +58,6 @@ app.directive('spinner', function() {
     }
   };
 });
-*/
 
 app.controller('LinksController', function($scope, TumblrApi) {
   var q;
@@ -72,3 +70,4 @@ app.controller('LinksController', function($scope, TumblrApi) {
 
   // Spinner.watch(q);
 });
+*/
