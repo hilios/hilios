@@ -50,7 +50,7 @@ app.controller('LinksController', function($scope, TumblrApi, Spinner) {
     $scope.links = data.response.posts;
   });
 
-    Spinner.watch(q);
+  Spinner.watch(q);
 });
 
 app.directive('spinner', function() {
