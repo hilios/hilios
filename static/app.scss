@@ -47,21 +47,24 @@ h2, h3, h4, h5, h6 {
 }
 
 nav {
+  $link-bg: rgba(0,0,0,0.85);
+  $hover-bg: rgba(0,0,0,1);
   $height: 50px;
+  $width: 240px;
   z-index: 999;
   top: 0;
+  left: -$width;
+  bottom: 0;
   position: fixed;
-  overflow: hidden;
-  background-color: #FFFFFF;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: $height;
-  height: $height;
+  background-color: $link-bg;
+  width: $width;
 
-  -webkit-transition: width .8s;
-  transition: width .8s;
+  -webkit-transition: left .8s;
+  transition: left .8s;
 
   &:hover {
-    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    left: 0;
   }
 
   ul {
@@ -71,27 +74,27 @@ nav {
   }
 
   li {
-    display: inline-block;
-    word-spacing: nowrap;
-    line-height: $height;
-    overflow: hidden;
-
     &:hover,
     &:active {
-      background-color: #F5F5F5;
+      background-color: $hover-bg;
     }
   }
 
   a {
+    display: block;
+    line-height: $height;
     padding: 0 $height * 1/3;
     text-decoration: none;
     font-weight: bold;
-    text-align: center;
-    color: #000000;
+    color: #F5F5F5;
+
+    i {
+      margin-right: 10px;
+    }
 
     &:link,
     &:visited {
-      color: #212121;
+      color: #FFFFFF;
     }
 
     &:hover, &:active {
@@ -100,16 +103,21 @@ nav {
   }
 
   .button {
-    background-color: #212121;
-    display: inline-block;
+    background-color: $link-bg;
+    display: block;
+    border: 0;
     padding: 0;
     width: $height;
     height: $height;
     cursor: pointer;
     color: #FFFFFF;
+    text-align: center;
+    position: absolute;;
+    top: 0;
+    left: $width;
 
     &:hover {
-      background-color: #000000;
+      background-color: $hover-bg;
     }
   }
 }
