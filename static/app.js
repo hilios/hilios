@@ -1,6 +1,6 @@
 ---
 ---
-
+/**
 {% include_relative vendor/angular.js %}
 
 var app = angular.module('hilios', []);
@@ -22,7 +22,7 @@ app.factory('TumblrApi', function($http, TumblrApiKey) {
       return $http.jsonp(endpoint + '/posts/link',
         angular.extend(tumblrConfig, config));
     }
-  }
+  };
 });
 
 app.factory('Spinner', function($rootScope, $q) {
@@ -39,18 +39,6 @@ app.factory('Spinner', function($rootScope, $q) {
   return {
     'watch': watch
   };
-});
-
-app.controller('LinksController', function($scope, TumblrApi, Spinner) {
-  var q;
-
-  $scope.links = null;
-
-  q = TumblrApi.links().success(function(data) {
-    $scope.links = data.response.posts;
-  });
-
-    Spinner.watch(q);
 });
 
 app.directive('spinner', function() {
@@ -70,3 +58,16 @@ app.directive('spinner', function() {
     }
   };
 });
+
+app.controller('LinksController', function($scope, TumblrApi) {
+  var q;
+
+  $scope.links = null;
+
+  q = TumblrApi.links().success(function(data) {
+    $scope.links = data.response.posts;
+  });
+
+  // Spinner.watch(q);
+});
+*/
