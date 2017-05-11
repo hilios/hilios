@@ -1,5 +1,5 @@
 ---
-title: Empreendedores: Pessoas que moldam o mundo
+title: Empreendedores - Pessoas que moldam o mundo
 category: talk
 
 slides_url: https://speakerdeck.com/hilios/empreendedores-pessoas-que-moldam-o-mundo
