@@ -1,5 +1,5 @@
 ---
-title: Either, Some or None: An introduction to monadic structures and functional programming
+title: Either, Some or None
 category: talk
 
 slides_url: https://speakerdeck.com/hilios/either-some-or-none-an-introduction-to-monadic-structures-and-functional-programming
