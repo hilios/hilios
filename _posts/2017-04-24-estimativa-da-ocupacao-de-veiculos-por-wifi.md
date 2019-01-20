@@ -1,5 +1,5 @@
 ---
-title: Estimativa da ocupação de veículos por WiFi
+title: Estimativa da ocupação de veículos por WiFi
 category: talk
 
 slides_url: https://speakerdeck.com/hilios/estimativa-da-ocupacao-de-veiculos-por-tecnologias-sem-fio-e-dispositivos-moveis-uma-aplicacao-no-transporte-urbano-de-passageiros-de-onibus
