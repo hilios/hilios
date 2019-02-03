@@ -219,10 +219,19 @@ section.talks{
 
   .talk {
     margin: 10px;
+    position: relative;
+    padding-top: 49.25%;
   }
 
   iframe {
-    height: 30%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
   }
 }
 
