@@ -1,5 +1,6 @@
 title: Edson Hilios
 baseurl: //edson.hilios.com.br
+permalink: /:categories/:title
 
 excerpt_separator: <!--more-->
 sass:
