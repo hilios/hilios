@@ -1,8 +1,10 @@
 ---
 title: WTF to Test
-category: talk
+layout: post
+category: talks
 
+slides_img: https://speakerd.s3.amazonaws.com/presentations/b79b96e088780132bf9f32622c07cc4a/preview_slide_0.jpg
 slides_url: https://speakerdeck.com/hilios/cpbr8-wtf-to-test
 ---
-<iframe src="//speakerdeck.com/player/b79b96e088780132bf9f32622c07cc4a" style="border: 0; width: 100%; height: 100%;" allowfullscreen scrolling="no" allow="autoplay; encrypted-media"></iframe>
+<iframe src="//speakerdeck.com/player/b79b96e088780132bf9f32622c07cc4a" allowfullscreen scrolling="no" allow="autoplay; encrypted-media"></iframe>
 <!--more-->
