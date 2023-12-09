@@ -1,7 +1,3 @@
-# [edson.hilios.com.br](https://edson.hilios.com.br)
+Hello 👋, I'm a **Software Engineer** with experience in payment systems, covering both issuing and acquiring sides. Sometimes, I give **Talks** and teach at events, universities, and conferences.
 
-My personal website.
-
-#### License
-
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+More one: [edson.hilios.com.br](https://edson.hilios.com.br)
